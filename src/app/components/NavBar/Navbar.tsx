@@ -28,11 +28,11 @@ const NavBar = () => {
             </li>
             <li>
               {" "}
-              <a href="#"></a>Pfodutos
+              <a href="#"></a>Produtos
             </li>
           </ul>
         </div>
-        <div className="h-9 my-auto mr-10 fo">
+        <div className="h-9 my-auto mr-10">
           <a href="../.././CartWidget">
             <ShoppingCartIcon className="h-9 my-auto" />
           </a>
