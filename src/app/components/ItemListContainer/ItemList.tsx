@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ItemConter from "../itemConter/ItemConter";
+import Item from "../Item/Item";
 
 const ItemList = () => {
   const [initial, setInitial] = useState<number>(0);
   const [stock, setStock] = useState<number>(5);
-  const [buttonIsDisable, setButtonIsDisable] = useState<boolean>(false);
+  const [imgURL, setImgURL] = useState<string>("");
 
   const onAdd = () => {
     const newStock = stock - initial;
@@ -13,14 +14,29 @@ const ItemList = () => {
     console.log(`Novo Stock = ${newStock}, Estado stock = ${stock}`);
   };
 
+  const getImgUrl = (): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(setImgURL("../../../../public/sneaker-1.webp"));
+        console.log(imgURL);
+      }, 2000);
+    });
+  };
+
+  useEffect(() => {
+    const onMount = async () => {
+      await getImgUrl();
+    };
+  }, []);
+
   return (
     <div className="mx-20 rounded-md bg-zinc-300 border-2 border-sky-400 border-opacity-5 flex flex-col mt-3 items-center justify-center">
       <div className="my-2">
-        <p className="mb-2">Item 1 </p>
+        <Item imageURL={imgURL} rightImage={imgURL} leftImage={imgURL} />
         <ItemConter initial={initial} stock={stock} onAdd={onAdd} />
       </div>
       <div className="my-2">
-        <p className="mb-2">Item 2 </p>
+        <Item imageURL={imgURL} rightImage="" leftImage="" />
         <ItemConter initial={10} stock={50} onAdd={onAdd} />
       </div>
       <div className="my-2">
