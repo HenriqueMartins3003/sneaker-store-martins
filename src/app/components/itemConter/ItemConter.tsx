@@ -16,6 +16,7 @@ const ItemConter = ({ initial, stock, onAdd }: Props) => {
       setCounter((prevConter) => (prevConter = prevConter + 1));
     } else {
       setIsDisable(true);
+      console.log(isDisable);
       toast.warn("Limite de itens atingido", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 500,
@@ -29,6 +30,7 @@ const ItemConter = ({ initial, stock, onAdd }: Props) => {
   const handleRemove = () => {
     if (counter > 0) {
       setCounter((prevConter) => (prevConter = prevConter - 1));
+      setIsDisable(false);
     } else {
       toast.warn("Carrinho de compras já está vazio!", {
         position: toast.POSITION.TOP_RIGHT,
@@ -42,7 +44,7 @@ const ItemConter = ({ initial, stock, onAdd }: Props) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col items-center mt-2">
       <div className="flex justify-around border-2 border-sky-600  rounded-md w-24 py-1">
         <div className="h-6 my-auto">
           <button className="h-6" onClick={handleRemove}>
@@ -60,7 +62,7 @@ const ItemConter = ({ initial, stock, onAdd }: Props) => {
       </div>
       <div className="border-2 border-sky-600  rounded-md mt-1">
         <button
-          className="h-6 py-2 px-1"
+          className="h-6 py-2 px-1 hover:opacity-50"
           onClick={() => onAdd()}
           disabled={isDisable}
         >
