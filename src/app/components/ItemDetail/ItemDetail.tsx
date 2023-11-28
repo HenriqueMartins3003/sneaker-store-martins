@@ -18,7 +18,7 @@ const ItemDetail = ({
 }: ItemsDetailInterface) => {
   return (
     <div className="flex">
-      <div className="">
+      <div className="ml-5 mt-2">
         <Image src={backImg!} alt=" " height={50} width={50}></Image>
       </div>
       <div className="flex flex-col">
