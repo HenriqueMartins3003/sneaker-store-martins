@@ -24,12 +24,7 @@ const ItemList = () => {
         resolve([
           {
             id: 1,
-            description: `Tênis Nike Air Force 1 07 x Space Jam Masculino Clássico e atemporal, o
-            tênis Nike Air Force 1 07 é um modelo que nunca sai de moda! Construído
-            com silhueta de cano baixo, o tênis apresenta um visual clean e
-            versátil, com cabedal todo feito de couro. Os detalhes incluem Swooshes
-            laterais e a assinatura Nike Air estampada nas etiquetas das línguas e
-            na região dos calcanhares. Perfeito para compor qualquer outfit! `,
+            description: "",
             price: 1450,
             title: `Nike Air Space Jam`,
             leftImage: lefttImage,
@@ -38,12 +33,7 @@ const ItemList = () => {
           },
           {
             id: 2,
-            description: `Tênis Nike Air Force 1 07 x Space Jam Masculino Clássico e atemporal, o
-            tênis Nike Air Force 1 07 é um modelo que nunca sai de moda! Construído
-            com silhueta de cano baixo, o tênis apresenta um visual clean e
-            versátil, com cabedal todo feito de couro. Os detalhes incluem Swooshes
-            laterais e a assinatura Nike Air estampada nas etiquetas das línguas e
-            na região dos calcanhares. Perfeito para compor qualquer outfit! `,
+            description: " ",
             price: 1450,
             title: `Nike Air Space Jam`,
             leftImage: lefttImage,
@@ -51,7 +41,7 @@ const ItemList = () => {
             principalImage: principalImage,
           },
         ]);
-      }, 5000);
+      }, 1000);
     });
   };
 
