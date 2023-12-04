@@ -1,6 +1,6 @@
 import { StaticImageData } from "next/image";
 
-export interface ItemsDetailInterface {
+export default interface ItemsDetailInterface {
   id?: number;
   topRightImage?: StaticImageData;
   toplLeftImage?: StaticImageData;
@@ -10,6 +10,6 @@ export interface ItemsDetailInterface {
   description?: string;
   title?: string;
   color?: string;
-  price?: number;
-  avaliability?: string;
+  price?: string;
+  avaliability?: number;
 }

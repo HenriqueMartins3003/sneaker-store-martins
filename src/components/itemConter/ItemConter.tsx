@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { PlusSmallIcon, MinusSmallIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 interface Props {
   stock: number;
@@ -45,7 +46,8 @@ const ItemConter = ({ initial, stock, onAdd }: Props) => {
 
   return (
     <div className="flex flex-col items-center mt-2">
-      <div className="flex justify-around border-2 border-sky-600  rounded-md w-24 py-1">
+      <span className="">Quantidade: </span>
+      <div className="flex justify-around border-2 border-sky-600  rounded-md w-24 py-1 mt-1">
         <div className="h-6 my-auto">
           <button className="h-6" onClick={handleRemove}>
             <MinusSmallIcon className="h-6 my-auto" />
@@ -61,13 +63,15 @@ const ItemConter = ({ initial, stock, onAdd }: Props) => {
         </div>
       </div>
       <div className="border-2 border-sky-600  rounded-md mt-1">
-        <button
-          className="h-6 py-2 px-1 hover:opacity-50"
-          onClick={() => onAdd()}
-          disabled={isDisable}
-        >
-          Adicionar ao carrinho
-        </button>
+        <Link href={"/CartWidget"}>
+          <button
+            className="h-6 py-2 px-1 hover:opacity-50"
+            onClick={() => onAdd()}
+            disabled={isDisable}
+          >
+            Adicionar ao carrinho
+          </button>
+        </Link>
       </div>
     </div>
   );

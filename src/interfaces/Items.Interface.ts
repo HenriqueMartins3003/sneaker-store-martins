@@ -1,8 +1,6 @@
 import { StaticImageData } from "next/image";
 
-export interface GetItemsInterface {
-  rightImage: StaticImageData;
-  leftImage: StaticImageData;
+export default interface GetItemsInterface {
   principalImage: StaticImageData;
   description: string;
   title: string;

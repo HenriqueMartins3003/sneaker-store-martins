@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
-import principalImage from "../public/sneaker-1.webp";
-import jordanImage from "../../../../public/JDGreen-top.png";
-import yeeziPrincipal from "../../../../public/Yeezy-PrincipalImage.webp";
+import Item from "./Item";
+
+import principalImage from "../../../public/sneaker-1.webp";
+import jordanImage from "../../../public/JDGreen-top.png";
+import yeeziPrincipal from "../../../public/Yeezy-PrincipalImage.webp";
 
 import GetItemsInterface from "@/interfaces/Items.Interface";
-import Item from "@/components/Item/Item";
 
 const ItemList = () => {
   const [items, SetItems] = useState<GetItemsInterface[]>([]);

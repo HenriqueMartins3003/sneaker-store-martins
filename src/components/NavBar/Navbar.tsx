@@ -1,5 +1,5 @@
 import Image from "next/image";
-import LocalImage from "../../../../public/LogoSneaker.png";
+import LocalImage from "@/../public/LogoSneaker.png";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import React from "react";
 

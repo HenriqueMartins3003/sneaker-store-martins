@@ -1,7 +1,8 @@
+import { ItemsDetailInterface } from "@/app/interfaces/ItemsDetail.interface";
 import Image from "next/image";
+
 import React from "react";
-import ItemsDetaileInterface from "@/interfaces/ItemsDetail.interface";
-import ItemConter from "@/components/itemConter/ItemConter";
+import ItemConter from "../itemConter/ItemConter";
 
 const ItemDetail = ({
   id,
@@ -15,7 +16,7 @@ const ItemDetail = ({
   title,
   topRightImage,
   toplLeftImage,
-}: ItemsDetaileInterface) => {
+}: ItemsDetailInterface) => {
   return (
     <div className="flex mt-3 w-screen">
       <div className="ml-5 mt-2 w-[7000px] grid grid-cols-2">
