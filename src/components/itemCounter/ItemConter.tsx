@@ -65,7 +65,9 @@ const ItemConter = ({ initial, stock, onAdd }: Props) => {
       <div className="border-2 border-sky-600  rounded-md mt-1">
         <button
           className="h-6 py-2 px-1 hover:opacity-50"
-          onClick={() => onAdd()}
+          onClick={() => {
+            console.log("mklsmvklemfv");
+          }}
           disabled={isDisable}
         >
           Adicionar ao carrinho
