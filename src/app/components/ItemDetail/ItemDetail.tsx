@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import ItemsDetaileInterface from "@/interfaces/ItemsDetail.interface";
-import ItemConter from "@/components/itemConter/ItemConter";
+import ItemConter from "@/components/itemCounter/ItemConter";
 
 const ItemDetail = ({
   id,

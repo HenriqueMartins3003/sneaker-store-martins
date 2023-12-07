@@ -2,7 +2,7 @@ import GetItemsInterface from "../../../interfaces/Items.Interface";
 import Image from "next/image";
 
 import React, { useState } from "react";
-import ItemConter from "@/components/itemConter/ItemConter";
+import ItemConter from "@/components/itemCounter/ItemConter";
 
 const Item = ({
   principalImage,

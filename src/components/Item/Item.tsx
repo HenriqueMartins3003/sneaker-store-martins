@@ -1,8 +1,9 @@
-import { GetItemsInterface } from "@/app/interfaces/Items.Interface";
+import GetItemsInterface from "@/interfaces/Items.Interface";
 import Image from "next/image";
 
 import React, { useState } from "react";
-import ItemConter from "../itemConter/ItemConter";
+
+import Link from "next/link";
 
 const Item = ({
   principalImage,
@@ -17,13 +18,11 @@ const Item = ({
   const onAdd = () => {
     const newStock = stock - initial;
     setStock(newStock);
-
-    console.log(`Novo Stock = ${newStock}, Estado stock = ${stock}`);
   };
 
   return (
     <div>
-      <div className="flex flex-col justify-center items-center border-3 border-sky-700">
+      <div className="flex flex-col justify-center items-center ">
         <div className="flex mb-2 mx-auto">
           <Image
             src={principalImage}
@@ -37,7 +36,11 @@ const Item = ({
         <p>$ {price}</p>
         <p className="text-sm text-neutral-950">{description}</p>
       </div>
-      <ItemConter initial={initial} stock={stock} onAdd={() => onAdd} />
+      <div className="flex justify-center items-center mt-1">
+        <button className="mx-auto border-2 bg-sky-700 text-sm text-white rounded-full px-2 py-2">
+          <Link href={`/ItemDetail/${id}`}> Ver Detalhes </Link>
+        </button>
+      </div>
     </div>
   );
 };

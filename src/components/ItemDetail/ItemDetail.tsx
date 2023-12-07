@@ -1,8 +1,8 @@
-import { ItemsDetailInterface } from "@/app/interfaces/ItemsDetail.interface";
+import ItemsDetailInterface from "@/interfaces/ItemsDetail.interface";
 import Image from "next/image";
 
 import React from "react";
-import ItemConter from "../itemConter/ItemConter";
+import ItemConter from "../itemCounter/ItemConter";
 
 const ItemDetail = ({
   id,
@@ -19,23 +19,23 @@ const ItemDetail = ({
 }: ItemsDetailInterface) => {
   return (
     <div className="flex mt-3 w-screen">
-      <div className="ml-5 mt-2 w-[7000px] grid grid-cols-2">
-        <div className="mt-2 mr-2 bg-slate-300 opacity-60">
+      <div className="ml-5 mt-2 w-[5500px] grid grid-cols-2">
+        <div className="bg-slate-300 opacity-60 mr-2">
           <Image
             src={backImg!}
             alt={title!}
             height={350}
             width={350}
-            className="pt-20"
+            className="pt-20 mx-auto my-auto"
           ></Image>
         </div>
-        <div className="mt-2 bg-slate-300 opacity-60">
+        <div className="bg-slate-300 opacity-60">
           <Image
             src={toplLeftImage!}
             alt={title!}
             height={350}
             width={350}
-            className="pt-20"
+            className="pt-20 mx-auto my-auto"
           ></Image>
         </div>
         <div className="mt-2 mr-2 bg-slate-300 opacity-60">
@@ -44,7 +44,7 @@ const ItemDetail = ({
             alt={title!}
             height={350}
             width={350}
-            className="pt-20"
+            className="pt-20 mx-auto"
           ></Image>
         </div>
         <div className="mt-2 bg-slate-300 opacity-60">
@@ -53,7 +53,7 @@ const ItemDetail = ({
             alt={title!}
             height={350}
             width={350}
-            className="pt-20"
+            className="pt-20 mx-auto"
           ></Image>
         </div>
       </div>

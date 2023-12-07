@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import Item from "./Item";
 
-import principalImage from "../../../public/sneaker-1.webp";
+import principalImage from "../../../public/sneaker-1.png";
 import jordanImage from "../../../public/JDGreen-top.png";
 import yeeziPrincipal from "../../../public/Yeezy-PrincipalImage.webp";
 
@@ -71,18 +71,16 @@ const ItemList = () => {
 
   return (
     <>
-      <div className="grid grid-cols-2 mx-20 rounded-md border-2 border-sky-400 border-opacity-5  mt-3 items-center justify-center">
+      <div className="grid grid-cols-2 mx-20 my-3 rounded-md border-2 border-sky-500 items-center justify-center">
         {items.map((item) => (
           <div className="my-2" key={item.id}>
-            <Link href={`/ItemDetail/${item.id}`}>
-              <Item
-                id={item.id}
-                price={item.price}
-                title={item.title}
-                description={item.description}
-                principalImage={item.principalImage}
-              />
-            </Link>
+            <Item
+              id={item.id}
+              price={item.price}
+              title={item.title}
+              description={item.description}
+              principalImage={item.principalImage}
+            />
           </div>
         ))}
       </div>
