@@ -1,12 +1,10 @@
 import React from "react";
-import { NavBar } from "../components/NavBar/Navbar";
+import { useCart } from "../context/cart.context";
 
 const CartWidget = () => {
-  return (
-    <>
-      <p>CartWidget</p>
-    </>
-  );
+  const { itemsCart } = useCart();
+
+  return <></>;
 };
 
 export default CartWidget;

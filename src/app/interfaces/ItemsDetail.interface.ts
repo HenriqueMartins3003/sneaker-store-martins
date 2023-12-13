@@ -12,4 +12,5 @@ export default interface ItemsDetailInterface {
   color?: string;
   price?: string;
   avaliability?: number;
+  stock?: number;
 }
