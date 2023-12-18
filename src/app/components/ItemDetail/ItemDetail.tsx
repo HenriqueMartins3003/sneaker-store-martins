@@ -1,20 +1,15 @@
 "use client";
-import ItemsDetailInterface from "@/app/interfaces/ItemsDetail.interface";
 import Image from "next/image";
-
 import React, { useState } from "react";
-import ItemConter from "../itemCounter/ItemConter";
-
 import { ToastContainer, toast } from "react-toastify";
 import { PlusSmallIcon, MinusSmallIcon } from "@heroicons/react/24/outline";
-import { useCart } from "@/app/context/cart.context";
-import Icart from "@/app/interfaces/Cart.Interface";
 import { useRouter } from "next/navigation";
+import GetItemsInterface from "@/app/interfaces/Items.Interface";
+import { useCart } from "@/contexto/cartContext";
 
 const ItemDetail = ({
   id,
   avaliability,
-  backImg,
   bottonLeftImage,
   bottonRightImage,
   color,
@@ -24,9 +19,11 @@ const ItemDetail = ({
   topRightImage,
   toplLeftImage,
   stock,
-}: ItemsDetailInterface) => {
+}: GetItemsInterface) => {
   const [counter, setCounter] = useState<number>(0);
-  const { itemsCart, addItem } = useCart();
+  const [stockState, setStockSate] = useState<number>(stock!);
+  const { addItem, isInCart, itemsCart } = useCart();
+
   const routes = useRouter();
 
   const handleAdd = () => {
@@ -45,8 +42,8 @@ const ItemDetail = ({
   };
 
   const handleRemove = () => {
-    if (counter > 0) {
-      setCounter((prevConter) => (prevConter = prevConter - 1));
+    if (stockState! > 0) {
+      setStockSate((prevStock) => (prevStock = prevStock + 1));
     } else {
       toast.warn("Carrinho de compras já está vazio!", {
         position: toast.POSITION.TOP_RIGHT,
@@ -59,18 +56,34 @@ const ItemDetail = ({
     }
   };
 
-  const ItemCart: Icart = {
-    id: id!,
-    description: description!,
-    price: parseFloat(price!),
-    principalImage: toplLeftImage!,
-    title: title!,
-    quantity: counter,
-  };
-
   const handleBuyClick = () => {
-    addItem(ItemCart);
-    routes.push("/CartWidget");
+    const iCart = {
+      id,
+      avaliability,
+      bottonLeftImage,
+      bottonRightImage,
+      color,
+      description,
+      price,
+      title,
+      topRightImage,
+      toplLeftImage,
+      stock,
+      quantity: counter,
+    };
+
+    addItem(iCart);
+
+    toast.success(`${title} adicionado ao carrinho com sucesso`, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 500,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      theme: "light",
+    });
+
+    //routes.push("/cartWidget");
   };
 
   return (
@@ -80,7 +93,7 @@ const ItemDetail = ({
         <div className="ml-5 mt-2 w-[5500px] grid grid-cols-2">
           <div className="bg-slate-300 opacity-60 mr-2">
             <Image
-              src={backImg!}
+              src={topRightImage!}
               alt={title!}
               height={350}
               width={350}
@@ -125,7 +138,7 @@ const ItemDetail = ({
             <span className="text-base">{`SKU: ${id}`}</span>
             <span className="text-base">{`Disponivel a partir de: ${avaliability}`}</span>
             <span className="text-base">{`$ ${price}`}</span>
-            <span className="text-base"> {`Estoque disponivel ${stock}`}</span>
+            <span className="text-base"> {`Estoque disponivel: ${stock}`}</span>
           </div>
           <div className="flex flex-col items-center mt-2">
             <span className="">Quantidade: </span>

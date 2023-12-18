@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
-
-import Item from "./Item";
 import GetItemsInterface from "@/app/interfaces/Items.Interface";
 import { getItems } from "@/app/services/mockApi.service";
+
+import Item from "./Item";
 
 const ItemList = () => {
   const [items, SetItems] = useState<GetItemsInterface[]>([]);
@@ -31,7 +30,7 @@ const ItemList = () => {
               price={item.price}
               title={item.title}
               description={item.description}
-              principalImage={item.principalImage}
+              toplLeftImage={item.topRightImage}
             />
           </div>
         ))}

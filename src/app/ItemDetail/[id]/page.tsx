@@ -1,10 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
-import { getItemsDetail } from "@/app/services/mockApi.service";
-import ItemsDetailInterface from "@/app/interfaces/ItemsDetail.interface";
-import { useCart } from "@/app/context/cart.context";
-import { toast, ToastContainer } from "react-toastify";
+import { getItems } from "@/app/services/mockApi.service";
+import GetItemsInterface from "@/app/interfaces/Items.Interface";
+import { useParams } from "next/navigation";
 
 interface Props {
   params: {
@@ -12,17 +11,18 @@ interface Props {
   };
 }
 const ItemDetailContainer = ({ params }: Props) => {
-  const [items, SetItems] = useState<ItemsDetailInterface | null>(null);
-  const { addItem } = useCart();
+  const routeParams = useParams();
+  const idNumber = Number(routeParams.id);
+
+  const [items, SetItems] = useState<GetItemsInterface | null>(null);
+  //const { addItem } = useCart();
 
   useEffect(() => {
     const onMount = async () => {
       try {
-        const resp = await getItemsDetail();
+        const resp = await getItems();
 
-        const productId = resp.find(
-          (produto) => produto.id === Number(params.id)
-        );
+        const productId = resp.find((produto) => produto.id === idNumber);
 
         productId ? SetItems(productId) : SetItems(null);
       } catch (err) {
@@ -31,7 +31,7 @@ const ItemDetailContainer = ({ params }: Props) => {
     };
 
     onMount();
-  }, [params.id]);
+  }, [idNumber]);
 
   return (
     <>
@@ -39,7 +39,6 @@ const ItemDetailContainer = ({ params }: Props) => {
         <ItemDetail
           id={items?.id}
           avaliability={items?.avaliability}
-          backImg={items?.backImg}
           bottonLeftImage={items?.bottonLeftImage}
           bottonRightImage={items?.bottonRightImage}
           color={items?.color}

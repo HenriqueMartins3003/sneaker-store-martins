@@ -1,13 +1,8 @@
-import principalImage from "../../../public/sneaker-1.png";
-import jordanImage from "../../../public/JDGreen-top.png";
-import yeeziPrincipal from "../../../public/Yeezy-PrincipalImage.webp";
-
 import GetItemsInterface from "@/app/interfaces/Items.Interface";
 
 import TopRImg from "../../../public/JDGreen-Right.webp";
 import TopLImg from "../../../public/JDGreen-top.png";
 import BottonLImg from "../../../public/JDGreen-sola.png";
-import BottonRImg from "../../../public/JDGreen-Left.png";
 import ImgBack from "../../../public/JDGreen-Back.png";
 
 import YeezyImg from "../../../public/Yeezy-PrincipalImage.webp";
@@ -20,145 +15,109 @@ import SpaceJamTop from "../../../public/sneaker-1.png";
 import SpaceJamR from "../../../public/sneaker_spaceJam2.png";
 import SpaceJamL from "../../../public/sneaker_spaceJam2.png";
 
-import ItemsDetailInterface from "@/app/interfaces/ItemsDetail.interface";
-
 const getItems = (): Promise<GetItemsInterface[]> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve([
         {
           id: 1,
-          description: "",
-          price: 1450,
-          title: `Nike Air Space Jam`,
-          principalImage: principalImage,
+          avaliability: new Date().getUTCFullYear(),
+          color: "Branco e Azul Bebê",
+          description: `Clássico e atemporal, o tênis Nike Air Force 1 07 é um modelo que nunca sai de moda!
+        Construído com silhueta de cano baixo, o tênis apresenta um visual clean e versátil, 
+        com cabedal todo feito de couro. Os detalhes incluem Swooshes laterais e a assinatura 
+        Nike Air estampada nas etiquetas das línguas e na região dos calcanhares.`,
+          price: 990,
+          title: `NIKE AIR FORCE 1 07 X SPACE JAM`,
+          stock: 10,
+          bottonLeftImage: SpaceJamL,
+          bottonRightImage: SpaceJamR,
+          toplLeftImage: SpaceJamTop,
+          topRightImage: SpaceJam,
         },
         {
           id: 2,
-          description: "",
-          price: 1450,
-          title: `Nike Jordan 4`,
-          principalImage: jordanImage,
+          avaliability: new Date().getUTCFullYear(),
+          color: "Medium Olive",
+          description: `Apaixone-se pelo Olive. Esta edição do clássico de 1989 apresenta camurça, 
+          couro e tecidos em elegantes tons terrosos. Os painéis laterais inspirados em malha são gravados em relevo para uma abordagem tátil do original.
+          E todos os outros elementos icónicos do AJ4 também estão presentes,
+          como os ilhoses flutuantes, o guarda-lamas ondulado e a marca Jumpman.`,
+          price: 1890,
+          title: `Air Jordan 4 Retro Craft`,
+          stock: 3,
+          bottonLeftImage: TopRImg,
+          bottonRightImage: TopLImg,
+          toplLeftImage: BottonLImg,
+          topRightImage: ImgBack,
         },
         {
           id: 3,
-          description: " ",
-          price: 1450,
-          title: `YEEZY BOOST 350 V2`,
-          principalImage: yeeziPrincipal,
+          avaliability: new Date().getUTCFullYear(),
+          color: "Slate",
+          description: `Construído em cano baixo, o Yeezy Boost 350 V2 “Slate” apresenta colorway clean e discreta em bege claro 
+          e a clássica tarja preta nas laterais. Seu cabedal feito de tecido torna o modelo semelhante a uma meia com gola mais alta no tornozelo.
+          Sua tecnologia Boost garante conforto inigualável, com amortecimento macio e duradouro.
+          `,
+          price: 2370,
+          title: `TÊNIS ADIDAS YEEZY BOOST 350 V2`,
+          stock: 10,
+          bottonLeftImage: YeezyImg,
+          bottonRightImage: YeezyBack,
+          toplLeftImage: YeezySola,
+          topRightImage: YeezyTop,
         },
         {
           id: 4,
-          description: " ",
-          price: 1450,
-          title: `Nike Jordan 4`,
-          principalImage: jordanImage,
+          avaliability: new Date().getUTCFullYear(),
+          color: "Branco e Azul Bebê",
+          description: `Clássico e atemporal, o tênis Nike Air Force 1 07 é um modelo que nunca sai de moda!
+        Construído com silhueta de cano baixo, o tênis apresenta um visual clean e versátil, 
+        com cabedal todo feito de couro. Os detalhes incluem Swooshes laterais e a assinatura 
+        Nike Air estampada nas etiquetas das línguas e na região dos calcanhares.`,
+          price: 990,
+          title: `NIKE AIR FORCE 1 07 X SPACE JAM`,
+          stock: 10,
+          bottonLeftImage: SpaceJamL,
+          bottonRightImage: SpaceJamR,
+          toplLeftImage: SpaceJamTop,
+          topRightImage: SpaceJam,
         },
         {
           id: 5,
-          description: " ",
-          price: 1450,
-          title: `Nike Jordan 4`,
-          principalImage: principalImage,
+          avaliability: new Date().getUTCFullYear(),
+          color: "Branco e Azul Bebê",
+          description: `Clássico e atemporal, o tênis Nike Air Force 1 07 é um modelo que nunca sai de moda!
+        Construído com silhueta de cano baixo, o tênis apresenta um visual clean e versátil, 
+        com cabedal todo feito de couro. Os detalhes incluem Swooshes laterais e a assinatura 
+        Nike Air estampada nas etiquetas das línguas e na região dos calcanhares.`,
+          price: 990,
+          title: `NIKE AIR FORCE 1 07 X SPACE JAM`,
+          stock: 10,
+          bottonLeftImage: SpaceJamL,
+          bottonRightImage: SpaceJamR,
+          toplLeftImage: SpaceJamTop,
+          topRightImage: SpaceJam,
+        },
+        {
+          id: 6,
+          avaliability: new Date().getUTCFullYear(),
+          color: "Branco e Azul Bebê",
+          description: `Clássico e atemporal, o tênis Nike Air Force 1 07 é um modelo que nunca sai de moda!
+        Construído com silhueta de cano baixo, o tênis apresenta um visual clean e versátil, 
+        com cabedal todo feito de couro. Os detalhes incluem Swooshes laterais e a assinatura 
+        Nike Air estampada nas etiquetas das línguas e na região dos calcanhares.`,
+          price: 990,
+          title: `NIKE AIR FORCE 1 07 X SPACE JAM`,
+          stock: 10,
+          bottonLeftImage: SpaceJamL,
+          bottonRightImage: SpaceJamR,
+          toplLeftImage: SpaceJamTop,
+          topRightImage: SpaceJam,
         },
       ]);
     }, 1000);
   });
 };
 
-const getItemsDetail = (): Promise<ItemsDetailInterface[]> => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve([
-        {
-          id: 1,
-          description: `Clássico e atemporal, o tênis Nike Air Force 1 07 é um modelo que nunca sai de moda!
-                        Construído com silhueta de cano baixo, o tênis apresenta um visual clean e versátil, 
-                        com cabedal todo feito de couro. Os detalhes incluem Swooshes laterais e a assinatura 
-                        Nike Air estampada nas etiquetas das línguas e na região dos calcanhares.`,
-          price: "990,00",
-          title: `NIKE AIR FORCE 1 07 X SPACE JAM`,
-          color: "Branco e Azul Bebê",
-          avaliability: new Date().getUTCFullYear(),
-          bottonLeftImage: SpaceJam,
-          bottonRightImage: SpaceJamL,
-          toplLeftImage: SpaceJamR,
-          topRightImage: SpaceJamTop,
-          backImg: SpaceJam,
-          stock: 10,
-        },
-        {
-          id: 2,
-          description: `Clássico e atemporal, o tênis Nike Air Force 1 07 é um modelo que nunca sai de moda!
-                        Construído com silhueta de cano baixo, o tênis apresenta um visual clean e versátil, 
-                        com cabedal todo feito de couro. Os detalhes incluem Swooshes laterais e a assinatura 
-                        Nike Air estampada nas etiquetas das línguas e na região dos calcanhares.`,
-
-          price: "990,00",
-          stock: 10,
-          title: `NIKE AIR FORCE 1 07 X SPACE JAM`,
-          color: "Branco e Azul Bebê",
-          avaliability: new Date().getUTCFullYear(),
-          bottonLeftImage: SpaceJam,
-          bottonRightImage: SpaceJamL,
-          toplLeftImage: SpaceJamR,
-          topRightImage: SpaceJamTop,
-          backImg: SpaceJam,
-        },
-        {
-          id: 3,
-          description: `Clássico e atemporal, o tênis Nike Air Force 1 07 é um modelo que nunca sai de moda!
-                        Construído com silhueta de cano baixo, o tênis apresenta um visual clean e versátil, 
-                        com cabedal todo feito de couro. Os detalhes incluem Swooshes laterais e a assinatura 
-                        Nike Air estampada nas etiquetas das línguas e na região dos calcanhares.`,
-          price: "990,00",
-          title: `NIKE AIR FORCE 1 07 X SPACE JAM`,
-          stock: 10,
-          color: "Branco e Azul Bebê",
-          avaliability: new Date().getUTCFullYear(),
-          bottonLeftImage: SpaceJam,
-          bottonRightImage: SpaceJamL,
-          toplLeftImage: SpaceJamR,
-          topRightImage: SpaceJamTop,
-          backImg: SpaceJam,
-        },
-        {
-          id: 4,
-          description: `Clássico e atemporal, o tênis Nike Air Force 1 07 é um modelo que nunca sai de moda!
-                        Construído com silhueta de cano baixo, o tênis apresenta um visual clean e versátil, 
-                        com cabedal todo feito de couro. Os detalhes incluem Swooshes laterais e a assinatura 
-                        Nike Air estampada nas etiquetas das línguas e na região dos calcanhares.`,
-          price: "990,00",
-          title: `NIKE AIR FORCE 1 07 X SPACE JAM`,
-          stock: 10,
-          color: "Branco e Azul Bebê",
-          avaliability: new Date().getUTCFullYear(),
-          bottonLeftImage: SpaceJam,
-          bottonRightImage: SpaceJamL,
-          toplLeftImage: SpaceJamR,
-          topRightImage: SpaceJamTop,
-          backImg: SpaceJam,
-        },
-        {
-          id: 5,
-          description: `Clássico e atemporal, o tênis Nike Air Force 1 07 é um modelo que nunca sai de moda!
-                        Construído com silhueta de cano baixo, o tênis apresenta um visual clean e versátil, 
-                        com cabedal todo feito de couro. Os detalhes incluem Swooshes laterais e a assinatura 
-                        Nike Air estampada nas etiquetas das línguas e na região dos calcanhares.`,
-          price: "990,00",
-          title: `NIKE AIR FORCE 1 07 X SPACE JAM`,
-          stock: 10,
-          color: "Branco e Azul Bebê",
-          avaliability: new Date().getUTCFullYear(),
-          bottonLeftImage: SpaceJam,
-          bottonRightImage: SpaceJamL,
-          toplLeftImage: SpaceJamR,
-          topRightImage: SpaceJamTop,
-          backImg: SpaceJam,
-        },
-      ]);
-    }, 500);
-  });
-};
-
-export { getItems, getItemsDetail };
+export { getItems };

@@ -1,20 +1,21 @@
 "use client";
 import { createContext, useContext, useState } from "react";
 import { useRouter } from "next/router";
-import Icart from "../interfaces/Cart.Interface";
+import GetItemsInterface from "@/app/interfaces/Items.Interface";
 
-interface IcartMethods extends Icart {
-  addItem: (item: Icart) => void;
+interface Icart extends GetItemsInterface {
+  item: GetItemsInterface[];
+  addItem: (item: GetItemsInterface) => void;
   removeItem: (itemId: number) => void;
   clear: () => void;
   isInCart: (id: number) => boolean;
 }
 
-const cartContextDefault: Icart[] = [];
+const cartContextDefault: GetItemsInterface[] = [];
 
 const CartContext = createContext<{
-  itemsCart: Icart[];
-  addItem: (item: Icart) => void;
+  itemsCart: GetItemsInterface[];
+  addItem: (item: GetItemsInterface) => void;
   removeItem: (itemId: number) => void;
   clear: () => void;
   isInCart: (id: number) => boolean;
@@ -31,15 +32,14 @@ interface IProvider {
 }
 
 const CartProvider = ({ children }: IProvider) => {
-  const [itemsCart, setItemsCart] = useState<Icart[]>([]);
+  const [itemsCart, setItemsCart] = useState<GetItemsInterface[]>([]);
 
-  const addItem = (item: Icart) => {
+  const addItem = (item: GetItemsInterface) => {
     setItemsCart((prevItems) => {
       // Implemente a lógica de adição do item ao carrinho
       return [...prevItems, { ...item }];
     });
   };
-
   const removeItem = (itemId: number) => {
     setItemsCart((prevItems) => {
       // Implemente a lógica de remoção do item do carrinho
