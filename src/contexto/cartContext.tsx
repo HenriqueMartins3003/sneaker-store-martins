@@ -33,6 +33,7 @@ interface IProvider {
 
 const CartProvider = ({ children }: IProvider) => {
   const [itemsCart, setItemsCart] = useState<GetItemsInterface[]>([]);
+  const [totalItems, setTotalItems] = useState<number>(0);
 
   const addItem = (item: GetItemsInterface) => {
     if (item.stock === 0) {
@@ -40,19 +41,21 @@ const CartProvider = ({ children }: IProvider) => {
     }
 
     setItemsCart((prevItems) => {
-      // Implemente a lógica de adição do item ao carrinho
+      setTotalItems((prev) => prev + 1);
       return [...prevItems, { ...item }];
     });
   };
   const removeItem = (itemId: number) => {
     setItemsCart((prevItems) => {
-      // Implemente a lógica de remoção do item do carrinho
+      setTotalItems((prev) => prev - 1);
+
       return prevItems.filter((item) => item.id !== itemId);
     });
   };
 
   const clear = () => {
     setItemsCart([]);
+    setTotalItems(0);
   };
 
   const isInCart = (itemId: number) => {
