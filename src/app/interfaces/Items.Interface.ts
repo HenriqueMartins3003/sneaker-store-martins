@@ -12,4 +12,5 @@ export default interface GetItemsInterface {
   price?: number;
   avaliability?: number;
   stock?: number;
+  quantity?: number;
 }

@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { PlusSmallIcon, MinusSmallIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
-import GetItemsInterface from "@/app/interfaces/Items.Interface";
 import { useCart } from "@/contexto/cartContext";
+import GetItemsInterface from "@/app/interfaces/Items.Interface";
 
 const ItemDetail = ({
   id,
@@ -19,16 +19,22 @@ const ItemDetail = ({
   topRightImage,
   toplLeftImage,
   stock,
+  quantity,
 }: GetItemsInterface) => {
-  const [counter, setCounter] = useState<number>(0);
+  const [counter, setCounter] = useState<number>(quantity!);
   const [stockState, setStockSate] = useState<number>(stock!);
   const { addItem, isInCart, itemsCart } = useCart();
 
   const routes = useRouter();
 
+  useEffect(() => {
+    setCounter(quantity!);
+    setStockSate(stock!);
+  }, [quantity, stock]);
+
   const handleAdd = () => {
-    if (counter < stock!) {
-      setCounter((prevConter) => (prevConter = prevConter + 1));
+    if (counter > stockState!) {
+      setCounter((prevConter) => prevConter + 1);
     } else {
       toast.warn("Limite de itens atingido", {
         position: toast.POSITION.TOP_RIGHT,
@@ -43,7 +49,8 @@ const ItemDetail = ({
 
   const handleRemove = () => {
     if (stockState! > 0) {
-      setStockSate((prevStock) => (prevStock = prevStock + 1));
+      setStockSate((prevStock) => prevStock - 1);
+      setCounter((prevCounter) => prevCounter - 1);
     } else {
       toast.warn("Carrinho de compras já está vazio!", {
         position: toast.POSITION.TOP_RIGHT,
@@ -83,7 +90,7 @@ const ItemDetail = ({
       theme: "light",
     });
 
-    //routes.push("/cartWidget");
+    routes.push("/");
   };
 
   return (
@@ -138,7 +145,11 @@ const ItemDetail = ({
             <span className="text-base">{`SKU: ${id}`}</span>
             <span className="text-base">{`Disponivel a partir de: ${avaliability}`}</span>
             <span className="text-base">{`$ ${price}`}</span>
-            <span className="text-base"> {`Estoque disponivel: ${stock}`}</span>
+            <span className="text-base">
+              {stock! > 0
+                ? `Estoque disponivel: ${stockState}`
+                : `Estoque indisponivel`}
+            </span>
           </div>
           <div className="flex flex-col items-center mt-2">
             <span className="">Quantidade: </span>

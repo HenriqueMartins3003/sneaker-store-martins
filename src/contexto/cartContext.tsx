@@ -35,6 +35,10 @@ const CartProvider = ({ children }: IProvider) => {
   const [itemsCart, setItemsCart] = useState<GetItemsInterface[]>([]);
 
   const addItem = (item: GetItemsInterface) => {
+    if (item.stock === 0) {
+      return;
+    }
+
     setItemsCart((prevItems) => {
       // Implemente a lógica de adição do item ao carrinho
       return [...prevItems, { ...item }];

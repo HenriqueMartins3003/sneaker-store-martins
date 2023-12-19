@@ -34,6 +34,7 @@ const getItems = (): Promise<GetItemsInterface[]> => {
           bottonRightImage: SpaceJamR,
           toplLeftImage: SpaceJamTop,
           topRightImage: SpaceJam,
+          quantity: 0,
         },
         {
           id: 2,
@@ -50,6 +51,7 @@ const getItems = (): Promise<GetItemsInterface[]> => {
           bottonRightImage: TopLImg,
           toplLeftImage: BottonLImg,
           topRightImage: ImgBack,
+          quantity: 0,
         },
         {
           id: 3,
@@ -66,6 +68,7 @@ const getItems = (): Promise<GetItemsInterface[]> => {
           bottonRightImage: YeezyBack,
           toplLeftImage: YeezySola,
           topRightImage: YeezyTop,
+          quantity: 0,
         },
         {
           id: 4,
@@ -82,6 +85,7 @@ const getItems = (): Promise<GetItemsInterface[]> => {
           bottonRightImage: SpaceJamR,
           toplLeftImage: SpaceJamTop,
           topRightImage: SpaceJam,
+          quantity: 0,
         },
         {
           id: 5,
@@ -98,6 +102,7 @@ const getItems = (): Promise<GetItemsInterface[]> => {
           bottonRightImage: SpaceJamR,
           toplLeftImage: SpaceJamTop,
           topRightImage: SpaceJam,
+          quantity: 0,
         },
         {
           id: 6,
@@ -114,6 +119,7 @@ const getItems = (): Promise<GetItemsInterface[]> => {
           bottonRightImage: SpaceJamR,
           toplLeftImage: SpaceJamTop,
           topRightImage: SpaceJam,
+          quantity: 0,
         },
       ]);
     }, 1000);
