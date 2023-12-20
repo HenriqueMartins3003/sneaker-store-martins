@@ -1,6 +1,6 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
-import "./globals.css";
 import { NavBar } from "@/app/components/NavBar/Navbar";
 import { CartProvider } from "@/contexto/cartContext";
 

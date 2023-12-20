@@ -4,6 +4,9 @@ import ItemDetail from "../../components/ItemDetail/ItemDetail";
 import { getItems } from "@/app/services/mockApi.service";
 import GetItemsInterface from "@/app/interfaces/Items.Interface";
 import { useParams } from "next/navigation";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { APP_FIREBASE } from "@/Config/firebase/firebase.config";
+import { trace } from "console";
 
 interface Props {
   params: {
@@ -21,7 +24,6 @@ const ItemDetailContainer = ({ params }: Props) => {
     const onMount = async () => {
       try {
         const resp = await getItems();
-
         const productId = resp.find((produto) => produto.id === idNumber);
 
         productId ? SetItems(productId) : SetItems(null);
@@ -31,7 +33,7 @@ const ItemDetailContainer = ({ params }: Props) => {
     };
 
     onMount();
-  }, [idNumber]);
+  }, []);
 
   return (
     <>
