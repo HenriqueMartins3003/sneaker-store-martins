@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 import { StaticImageData } from "next/image";
 
 export default interface GetItemsInterface {
@@ -10,7 +11,7 @@ export default interface GetItemsInterface {
   title?: string;
   color?: string;
   price?: number;
-  avaliability?: number;
+  avaliability?: Timestamp;
   stock?: number;
   quantity?: number;
 }

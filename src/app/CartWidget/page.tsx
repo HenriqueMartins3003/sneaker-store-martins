@@ -3,16 +3,17 @@ import React from "react";
 import { useCart } from "@/contexto/cartContext";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const CartWidget = () => {
   const { itemsCart, removeItem } = useCart();
+  const routes = useRouter();
 
-  console.log("Tamanho carrinho", itemsCart.length);
-
+  console.log("Tamanho do carrinho!!!!!!!!", itemsCart.length);
   return (
     <>
       <div className="container mx-auto my-4 flex flex-col">
-        {itemsCart.length >= 0 ? (
+        {itemsCart.length > 0 ? (
           itemsCart.map((item) => (
             <div
               className="flex items-center  mb-4 p-4 bg-gray-200 rounded-md border border-gray-700 space-x-10"
@@ -40,7 +41,15 @@ const CartWidget = () => {
             </div>
           ))
         ) : (
-          <p className="text-black">Carrinho Vazio!</p>
+          <div className="flex flex-col items-center justify-center h-screen">
+            <p className="text-black text-3xl">Carrinho Vazio! </p>
+            <button
+              className="mt-2 mx-auto border-2 bg-sky-700 text-sm text-white rounded-full px-2 py-2"
+              onClick={() => routes.push("/")}
+            >
+              Home page
+            </button>
+          </div>
         )}
       </div>
     </>

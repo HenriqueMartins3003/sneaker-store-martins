@@ -23,8 +23,18 @@ const ItemDetailContainer = ({ params }: Props) => {
   useEffect(() => {
     const onMount = async () => {
       try {
-        const resp = await getItems();
-        const productId = resp.find((produto) => produto.id === idNumber);
+        const db = getFirestore(APP_FIREBASE);
+        const prodRef = collection(db, "Sneaker");
+        const listaSneaker = await getDocs(prodRef).then((item) => {
+          const lista = item.docs.map((doc) => doc.data());
+          return lista;
+        });
+        //console.log(listaSneaker);
+        //Mock do objeto do FireBase
+        //const resp = await getItems();
+        const productId = listaSneaker.find(
+          (produto) => produto.id === idNumber
+        );
 
         productId ? SetItems(productId) : SetItems(null);
       } catch (err) {
@@ -33,7 +43,7 @@ const ItemDetailContainer = ({ params }: Props) => {
     };
 
     onMount();
-  }, []);
+  }, [idNumber]);
 
   return (
     <>
@@ -50,6 +60,7 @@ const ItemDetailContainer = ({ params }: Props) => {
           topRightImage={items?.topRightImage}
           toplLeftImage={items?.toplLeftImage}
           stock={items?.stock}
+          quantity={items?.quantity}
         />
       </section>
     </>

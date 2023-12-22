@@ -21,6 +21,7 @@ const Item = ({ toplLeftImage, id, price, title }: GetItemsInterface) => {
         <h4>{title}</h4>
         <p>$ {price}</p>
       </div>
+
       <div className="flex justify-center items-center mt-1">
         <button
           className="mx-auto border-2 bg-sky-700 text-sm text-white rounded-full px-2 py-2"

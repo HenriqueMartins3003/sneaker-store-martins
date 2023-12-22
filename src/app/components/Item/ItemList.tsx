@@ -40,18 +40,18 @@ const ItemList = () => {
           const lista = item.docs.map((doc) => doc.data());
           return lista;
         });
-        console.log(listaSneaker);
 
-        const resp = await getItems();
+        //Mock do objeto do FireBase
+        //const resp = await getItems();
         SetItems(listaSneaker);
       } catch (err) {
         console.log("Erro:", err);
       }
     };
-    console.log(items);
+
     onMount();
   }, []);
-
+  console.log();
   return (
     <>
       <div className="grid grid-cols-2 mx-20 my-3 rounded-md border-2 border-sky-500 items-center justify-center">

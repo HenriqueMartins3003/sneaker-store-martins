@@ -3,9 +3,10 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { PlusSmallIcon, MinusSmallIcon } from "@heroicons/react/24/outline";
-import { useRouter } from "next/navigation";
+
 import { useCart } from "@/contexto/cartContext";
 import GetItemsInterface from "@/app/interfaces/Items.Interface";
+import ItemCounter from "../itemCounter/itemCounter";
 
 const ItemDetail = ({
   id,
@@ -21,78 +22,11 @@ const ItemDetail = ({
   stock,
   quantity,
 }: GetItemsInterface) => {
-  const [counter, setCounter] = useState<number>(quantity!);
-  const [stockState, setStockSate] = useState<number>(stock!);
   const { addItem, isInCart, itemsCart } = useCart();
 
-  const routes = useRouter();
-
-  useEffect(() => {
-    setCounter(quantity!);
-    setStockSate(stock!);
-  }, [quantity, stock]);
-
-  const handleAdd = () => {
-    if (counter > stockState!) {
-      setCounter((prevConter) => prevConter + 1);
-    } else {
-      toast.warn("Limite de itens atingido", {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 500,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        theme: "light",
-      });
-    }
-  };
-
-  const handleRemove = () => {
-    if (stockState! > 0) {
-      setStockSate((prevStock) => prevStock - 1);
-      setCounter((prevCounter) => prevCounter - 1);
-    } else {
-      toast.warn("Carrinho de compras já está vazio!", {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 500,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        theme: "light",
-      });
-    }
-  };
-
-  const handleBuyClick = () => {
-    const iCart = {
-      id,
-      avaliability,
-      bottonLeftImage,
-      bottonRightImage,
-      color,
-      description,
-      price,
-      title,
-      topRightImage,
-      toplLeftImage,
-      stock,
-      quantity: counter,
-    };
-
-    addItem(iCart);
-
-    toast.success(`${title} adicionado ao carrinho com sucesso`, {
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose: 500,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: false,
-      theme: "light",
-    });
-
-    routes.push("/");
-  };
-
+  const date = avaliability?.toDate();
+  const formatedDate = date?.toLocaleDateString("pt-BR");
+  console.log("Quantidade vindo do firebase!!!", quantity);
   return (
     <>
       <ToastContainer />
@@ -143,40 +77,15 @@ const ItemDetail = ({
           <span className="text-base">{description}</span>
           <div className="flex flex-col mt-3 gap-3">
             <span className="text-base">{`SKU: ${id}`}</span>
-            <span className="text-base">{`Disponivel a partir de: ${avaliability}`}</span>
+            <span className="text-base">{`Disponivel a partir de: ${formatedDate}`}</span>
             <span className="text-base">{`$ ${price}`}</span>
             <span className="text-base">
               {stock! > 0
-                ? `Estoque disponivel: ${stockState}`
+                ? `Estoque disponivel: ${stock!}`
                 : `Estoque indisponivel`}
             </span>
           </div>
-          <div className="flex flex-col items-center mt-2">
-            <span className="">Quantidade: </span>
-            <div className="flex justify-around border-2 border-sky-600  rounded-md w-24 py-1 mt-1">
-              <div className="h-6 my-auto">
-                <button className="h-6" onClick={handleRemove}>
-                  <MinusSmallIcon className="h-6 my-auto" />
-                </button>
-              </div>
-              <div>
-                <p>{counter}</p>
-              </div>
-              <div className="h-6 my-auto">
-                <button className="h-6" onClick={handleAdd}>
-                  <PlusSmallIcon className="h-6 my-auto" />
-                </button>
-              </div>
-            </div>
-            <div className="border-2 border-sky-600  rounded-md mt-1">
-              <button
-                className="h-6 py-2 px-1 hover:opacity-50"
-                onClick={() => handleBuyClick()}
-              >
-                Adicionar ao carrinho
-              </button>
-            </div>
-          </div>
+          <ItemCounter stockFirebase={stock!} quantity={quantity!} />
         </div>
       </div>
     </>
