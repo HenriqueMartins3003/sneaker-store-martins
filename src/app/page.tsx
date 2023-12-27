@@ -1,14 +1,13 @@
 "use client";
-import ItemList from "./components/Item/ItemList";
-import { NavBar } from "./components/NavBar/Navbar";
-import { ToastContainer } from "react-toastify";
+import ItemList from "@/app/components/Item/ItemList";
+
 import "react-toastify/dist/ReactToastify.css";
+//import { CartProvider } from "./context/cart.context";
 
 export default function Home() {
   return (
     <>
       <ItemList />
-      <ToastContainer />
     </>
   );
 }

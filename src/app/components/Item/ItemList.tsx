@@ -1,55 +1,48 @@
 import React, { useEffect, useState } from "react";
-import ItemConter from "../itemConter/ItemConter";
+import GetItemsInterface from "@/app/interfaces/Items.Interface";
+import { APP_FIREBASE } from "@/Config/firebase/firebase.config";
+import {
+  collection,
+  getDocs,
+  getDoc,
+  getFirestore,
+  doc,
+} from "firebase/firestore";
 import Item from "./Item";
-import { GetItemsInterface } from "@/app/interfaces/Items.Interface";
-import rightImage from "../../../../public/Sneaker_spaceJam3.webp";
-import lefttImage from "../../../../public/sneaker_spaceJam2.webp";
-import principalImage from "../../../../public/sneaker-1.webp";
 
 const ItemList = () => {
-  const [initial, setInitial] = useState<number>(0);
-  const [stock, setStock] = useState<number>(5);
   const [items, SetItems] = useState<GetItemsInterface[]>([]);
 
-  const onAdd = () => {
-    const newStock = stock - initial;
-    setStock(newStock);
+  // const db = getFirestore(APP_FIREBASE);
 
-    console.log(`Novo Stock = ${newStock}, Estado stock = ${stock}`);
-  };
+  //Pegar apenas um objeto do Firebase
+  // const productRef = doc(db, "Sneaker", "BevNCG3cMrbMFxuXSPEH");
+  // getDoc(productRef).then((item) => {
+  //   if (item.exists()) {
+  //     console.log(item.data());
+  //   }
+  // });
 
-  const getItems = (): Promise<GetItemsInterface[]> => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve([
-          {
-            id: 1,
-            description: "",
-            price: 1450,
-            title: `Nike Air Space Jam`,
-            leftImage: lefttImage,
-            rightImage: rightImage,
-            principalImage: principalImage,
-          },
-          {
-            id: 2,
-            description: " ",
-            price: 1450,
-            title: `Nike Air Space Jam`,
-            leftImage: lefttImage,
-            rightImage: rightImage,
-            principalImage: principalImage,
-          },
-        ]);
-      }, 1000);
-    });
-  };
+  //  const prodRef = collection(db, "Sneaker");
+
+  // const listaSneaker = getDocs(prodRef).then((item) => {
+  //   const lista = item.docs.map((doc) => doc.data());
+  //   return lista;
+  // });
 
   useEffect(() => {
     const onMount = async () => {
       try {
-        const resp = await getItems();
-        SetItems(resp);
+        const db = getFirestore(APP_FIREBASE);
+        const prodRef = collection(db, "Sneaker");
+        const listaSneaker = await getDocs(prodRef).then((item) => {
+          const lista = item.docs.map((doc) => doc.data());
+          return lista;
+        });
+
+        //Mock do objeto do FireBase
+        //const resp = await getItems();
+        SetItems(listaSneaker);
       } catch (err) {
         console.log("Erro:", err);
       }
@@ -57,26 +50,21 @@ const ItemList = () => {
 
     onMount();
   }, []);
-
+  console.log();
   return (
     <>
-      <div className="mx-20 rounded-md bg-zinc-300 border-2 border-sky-400 border-opacity-5 flex flex-col mt-3 items-center justify-center">
-        <div>
-          {items.map((item) => (
-            <div className="my-2" key={item.id}>
-              <Item
-                id={item.id}
-                price={item.price}
-                title={item.title}
-                description={item.description}
-                rightImage={item.rightImage}
-                leftImage={item.leftImage}
-                principalImage={item.principalImage}
-              />
-              <ItemConter initial={initial} stock={stock} onAdd={() => onAdd} />
-            </div>
-          ))}
-        </div>
+      <div className="grid grid-cols-2 mx-20 my-3 rounded-md border-2 border-sky-500 items-center justify-center">
+        {items.map((item) => (
+          <div className="my-2" key={item.id}>
+            <Item
+              id={item.id}
+              price={item.price}
+              title={item.title}
+              description={item.description}
+              toplLeftImage={item.topRightImage}
+            />
+          </div>
+        ))}
       </div>
     </>
   );

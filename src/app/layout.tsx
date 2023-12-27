@@ -1,9 +1,11 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import { NavBar } from "./components/NavBar/Navbar";
+import type { Metadata } from "next";
+import { Inter, Poppins } from "next/font/google";
+import { NavBar } from "@/app/components/NavBar/Navbar";
+import { CartProvider } from "@/contexto/cartContext";
 
 const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({ weight: "500", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Sneaker Store",
@@ -17,9 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={`${inter.className} w-full h-full`}>
-        <NavBar />
-        {children}
+      <body className={`${poppins.className} w-full h-full`}>
+        <CartProvider>
+          <NavBar />
+          {children}
+        </CartProvider>
       </body>
     </html>
   );
