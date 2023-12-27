@@ -100,13 +100,13 @@ const ItemDetail = ({
     <>
       <div className="flex mt-3 w-screen">
         <div className="ml-5 mt-2 w-[5500px] grid grid-cols-2">
-          <div className="bg-slate-300 opacity-60 mr-2">
+          <div className="bg-slate-300 opacity-60 mr-2 items-center justify-center">
             <Image
               src={topRightImage!}
               alt={title!}
               height={350}
               width={350}
-              className="pt-20 mx-auto my-auto"
+              className="pt-20 mx-auto my-auto items-center"
             ></Image>
           </div>
           <div className="bg-slate-300 opacity-60">
@@ -115,7 +115,7 @@ const ItemDetail = ({
               alt={title!}
               height={350}
               width={350}
-              className="pt-20 mx-auto my-auto"
+              className="pt-20 mx-auto my-auto items-center"
             ></Image>
           </div>
           <div className="mt-2 mr-2 bg-slate-300 opacity-60">

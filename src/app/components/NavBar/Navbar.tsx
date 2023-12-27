@@ -13,7 +13,7 @@ const NavBar = () => {
 
   return (
     <div className=" w-screen mx-auto">
-      <nav className="bg-sky-700 h-20 flex justify-between align-middle">
+      <nav className="bg-sky-700 h-20 flex justify-around align-middle">
         <div className="flex my-auto">
           <div className="h-[78] w-[78]">
             <Image
