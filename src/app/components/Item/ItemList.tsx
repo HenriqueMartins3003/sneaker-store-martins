@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import GetItemsInterface from "@/app/interfaces/Items.Interface";
-import { getItems } from "@/app/services/mockApi.service";
 import { APP_FIREBASE } from "@/Config/firebase/firebase.config";
 import {
   collection,

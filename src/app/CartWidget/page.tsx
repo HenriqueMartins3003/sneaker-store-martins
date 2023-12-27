@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const CartWidget = () => {
-  const { itemsCart, removeItem } = useCart();
+  const { itemsCart, removeItem, clear } = useCart();
   const routes = useRouter();
 
   console.log("Tamanho do carrinho!!!!!!!!", itemsCart.length);
@@ -32,6 +32,7 @@ const CartWidget = () => {
               <p className="text-black">
                 <strong>{item.title}</strong>
               </p>
+              <p className="text-black">Quantidade: {item.quantity}</p>
 
               <p>Preço total: {item.quantity! * item.price!}</p>
 
@@ -51,6 +52,18 @@ const CartWidget = () => {
             </button>
           </div>
         )}
+      </div>
+
+      <div className="flex flex-col items-center justify-center h-screen">
+        <button
+          className="mt-2 mx-auto border-2 bg-sky-700 text-sm text-white rounded-full px-2 py-2"
+          onClick={() => {
+            clear();
+            routes.push("/cartWidget");
+          }}
+        >
+          Limpar carrinho!
+        </button>
       </div>
     </>
   );

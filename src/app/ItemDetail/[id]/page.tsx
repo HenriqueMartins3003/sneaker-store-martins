@@ -1,12 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
-import { getItems } from "@/app/services/mockApi.service";
 import GetItemsInterface from "@/app/interfaces/Items.Interface";
 import { useParams } from "next/navigation";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { APP_FIREBASE } from "@/Config/firebase/firebase.config";
-import { trace } from "console";
+import { ToastContainer } from "react-toastify";
 
 interface Props {
   params: {
@@ -29,7 +28,7 @@ const ItemDetailContainer = ({ params }: Props) => {
           const lista = item.docs.map((doc) => doc.data());
           return lista;
         });
-        //console.log(listaSneaker);
+
         //Mock do objeto do FireBase
         //const resp = await getItems();
         const productId = listaSneaker.find(
@@ -37,6 +36,7 @@ const ItemDetailContainer = ({ params }: Props) => {
         );
 
         productId ? SetItems(productId) : SetItems(null);
+        localStorage.setItem("StockDisponivel", items!.stock!.toString());
       } catch (err) {
         console.log("Erro:", err);
       }
@@ -48,6 +48,7 @@ const ItemDetailContainer = ({ params }: Props) => {
   return (
     <>
       <section>
+        <ToastContainer />
         <ItemDetail
           id={items?.id}
           avaliability={items?.avaliability}
