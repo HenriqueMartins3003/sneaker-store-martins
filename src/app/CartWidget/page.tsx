@@ -73,6 +73,17 @@ const CartWidget = () => {
           <button
             className="border-2 bg-sky-700 text-sm text-white rounded-full px-2 py-2"
             onClick={() => {
+              // logica para alterar o firesabe
+              //Votlando para a pagina inicial
+
+              routes.push("/");
+            }}
+          >
+            Finalizar Compra!
+          </button>
+          <button
+            className="border-2 bg-sky-700 text-sm text-white rounded-full px-2 py-2"
+            onClick={() => {
               clear();
               routes.refresh();
             }}
