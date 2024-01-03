@@ -67,6 +67,17 @@ const ItemDetail = ({
   };
 
   const handleBuyClick = () => {
+    if (counter === 0) {
+      toast.warn(`Quantidade de items deve ser maior que zero!`, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 500,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        theme: "light",
+      });
+      return;
+    }
     const iCart = {
       id,
       avaliability,

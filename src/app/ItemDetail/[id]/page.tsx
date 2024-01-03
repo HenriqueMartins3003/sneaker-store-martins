@@ -43,7 +43,7 @@ const ItemDetailContainer = ({ params }: Props) => {
     };
 
     onMount();
-  }, [idNumber]);
+  }, [idNumber, items]);
 
   return (
     <>

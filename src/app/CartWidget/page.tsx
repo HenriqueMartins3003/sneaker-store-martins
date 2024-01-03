@@ -1,39 +1,50 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useCart } from "@/contexto/cartContext";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const CartWidget = () => {
+  const [totalPrice, setTotalPrice] = useState<number>(0);
   const { itemsCart, removeItem, clear } = useCart();
   const routes = useRouter();
 
-  console.log("Tamanho do carrinho!!!!!!!!", itemsCart.length);
+  useEffect(() => {
+    let calculatedPrice = 0;
+    itemsCart.forEach((item) => {
+      calculatedPrice += item.quantity! * item.price!;
+    });
+
+    setTotalPrice(calculatedPrice);
+    console.log("preco total dos items!!", calculatedPrice);
+  }, [itemsCart]);
+
   return (
     <>
       <div className="container mx-auto my-4 flex flex-col">
         {itemsCart.length > 0 ? (
           itemsCart.map((item) => (
             <div
-              className="flex items-center  mb-4 p-4 bg-gray-200 rounded-md border border-gray-700 space-x-10"
+              className="flex justify-between items-center  mb-4 p-4 bg-gray-200 rounded-md border border-gray-700"
               key={item.id}
             >
-              <div className="w-24 mr-4">
+              <div className="w-24">
                 <Image
                   src={item.bottonRightImage!}
-                  alt=""
+                  alt={item.title!}
                   width={300}
                   height={300}
-                  className="w-full rounded-md"
+                  className="w-24"
                 />
               </div>
+              <div className="flex space-x-3">
+                <p className="text-black">
+                  <strong>{item.title}</strong>
+                </p>
+              </div>
 
-              <p className="text-black">
-                <strong>{item.title}</strong>
-              </p>
               <p className="text-black">Quantidade: {item.quantity}</p>
-
               <p>Preço total: {item.quantity! * item.price!}</p>
 
               <button className="" onClick={() => removeItem(item.id!)}>
@@ -45,25 +56,41 @@ const CartWidget = () => {
           <div className="flex flex-col items-center justify-center h-screen">
             <p className="text-black text-3xl">Carrinho Vazio! </p>
             <button
-              className="mt-2 mx-auto border-2 bg-sky-700 text-sm text-white rounded-full px-2 py-2"
+              className="border-2 bg-sky-700 text-sm text-white rounded-full px-2 py-2 mt-3"
               onClick={() => routes.push("/")}
             >
               Home page
             </button>
           </div>
         )}
-      </div>
 
-      <div className="flex flex-col items-center justify-center h-screen">
-        <button
-          className="mt-2 mx-auto border-2 bg-sky-700 text-sm text-white rounded-full px-2 py-2"
-          onClick={() => {
-            clear();
-            routes.push("/cartWidget");
-          }}
-        >
-          Limpar carrinho!
-        </button>
+        <div className="flex justify-between items-center  mb-4 p-4 bg-gray-200 rounded-md border border-gray-700">
+          <p>
+            {" "}
+            Valor total do carrinho:{" "}
+            <strong className="pl-1"> ${totalPrice},00</strong>{" "}
+          </p>
+          <button
+            className="border-2 bg-sky-700 text-sm text-white rounded-full px-2 py-2"
+            onClick={() => {
+              // logica para alterar o firesabe
+              //Votlando para a pagina inicial
+
+              routes.push("/");
+            }}
+          >
+            Finalizar Compra!
+          </button>
+          <button
+            className="border-2 bg-sky-700 text-sm text-white rounded-full px-2 py-2"
+            onClick={() => {
+              clear();
+              routes.refresh();
+            }}
+          >
+            Limpar carrinho!
+          </button>
+        </div>
       </div>
     </>
   );
