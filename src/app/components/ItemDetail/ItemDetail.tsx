@@ -24,6 +24,7 @@ const ItemDetail = ({
 }: GetItemsInterface) => {
   const [stockState, setStockState] = useState<number>(0);
   const [counter, setCounter] = useState<number>(0);
+  const [isEnable, setIsEnable] = useState<boolean>(false);
   const date = avaliability?.toDate();
   const formatedDate = date?.toLocaleDateString("pt-BR");
   const routes = useRouter();
@@ -39,6 +40,7 @@ const ItemDetail = ({
       setCounter((prevConter) => prevConter + 1);
       setStockState((prevStock) => prevStock - 1);
     } else {
+      setIsEnable(true);
       toast.warn("Limite de itens atingido", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 500,
@@ -55,6 +57,7 @@ const ItemDetail = ({
       setStockState((prevStock) => prevStock + 1);
       setCounter((prevCounter) => prevCounter - 1);
     } else {
+      setIsEnable(true);
       toast.warn("Carrinho de compras já está vazio!", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 500,
@@ -68,6 +71,7 @@ const ItemDetail = ({
 
   const handleBuyClick = () => {
     if (counter === 0) {
+      setIsEnable(true);
       toast.warn(`Quantidade de items deve ser maior que zero!`, {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 500,
@@ -185,6 +189,7 @@ const ItemDetail = ({
             <div className="border-2 border-sky-600  rounded-md mt-1">
               <button
                 className="h-6 py-2 px-1 hover:opacity-50"
+                disabled={isEnable}
                 onClick={() => handleBuyClick()}
               >
                 Adicionar ao carrinho
