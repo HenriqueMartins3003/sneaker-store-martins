@@ -74,9 +74,11 @@ const CartWidget = () => {
             className="border-2 bg-sky-700 text-sm text-white rounded-full px-2 py-2"
             onClick={() => {
               // logica para alterar o firesabe
-              //Votlando para a pagina inicial
 
-              routes.push("/");
+              //limpando o carrinho!
+              clear();
+              //Indo para a pagina de finalização(integraçao com pagina de pagamentos);
+              routes.push("/cartFinished");
             }}
           >
             Finalizar Compra!
