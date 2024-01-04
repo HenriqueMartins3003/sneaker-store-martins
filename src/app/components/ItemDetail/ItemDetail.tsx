@@ -108,7 +108,7 @@ const ItemDetail = ({
       theme: "light",
     });
 
-    routes.push("/");
+    routes.push("/CartWidget");
   };
 
   return (

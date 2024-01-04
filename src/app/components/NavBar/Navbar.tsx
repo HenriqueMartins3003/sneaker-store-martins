@@ -40,7 +40,7 @@ const NavBar = () => {
         <div className="h-9 my-auto mr-10">
           <a
             className="cursor-pointer"
-            onClick={() => routes.push("./cartWidget")}
+            onClick={() => routes.push("./CartWidget")}
           >
             <ShoppingCartIcon className="h-9 my-auto" />
             {itemsCart.length > 0 && (
