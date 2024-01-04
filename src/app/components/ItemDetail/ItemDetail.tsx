@@ -108,7 +108,7 @@ const ItemDetail = ({
       theme: "light",
     });
 
-    routes.push("/");
+    routes.push("/CartWidget");
   };
 
   return (
@@ -189,7 +189,6 @@ const ItemDetail = ({
             <div className="border-2 border-sky-600  rounded-md mt-1">
               <button
                 className="h-6 py-2 px-1 hover:opacity-50"
-                disabled={isEnable}
                 onClick={() => handleBuyClick()}
               >
                 Adicionar ao carrinho

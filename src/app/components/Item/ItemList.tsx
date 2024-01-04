@@ -9,6 +9,7 @@ import {
   doc,
 } from "firebase/firestore";
 import Item from "./Item";
+import useFireBaseHook from "@/Hooks/fireBaseHook";
 
 const ItemList = () => {
   const [items, SetItems] = useState<GetItemsInterface[]>([]);
@@ -33,15 +34,10 @@ const ItemList = () => {
   useEffect(() => {
     const onMount = async () => {
       try {
-        const db = getFirestore(APP_FIREBASE);
-        const prodRef = collection(db, "Sneaker");
-        const listaSneaker = await getDocs(prodRef).then((item) => {
-          const lista = item.docs.map((doc) => doc.data());
-          return lista;
-        });
+        //Custom hook para usar o Firebase!
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const listaSneaker = await useFireBaseHook();
 
-        //Mock do objeto do FireBase
-        //const resp = await getItems();
         SetItems(listaSneaker);
       } catch (err) {
         console.log("Erro:", err);

@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { APP_FIREBASE } from "@/Config/firebase/firebase.config";
 import { ToastContainer } from "react-toastify";
+import useFireBaseHook from "@/Hooks/fireBaseHook";
 
 interface Props {
   params: {
@@ -17,20 +18,13 @@ const ItemDetailContainer = ({ params }: Props) => {
   const idNumber = Number(routeParams.id);
 
   const [items, SetItems] = useState<GetItemsInterface | null>(null);
-  //const { addItem } = useCart();
 
   useEffect(() => {
     const onMount = async () => {
       try {
-        const db = getFirestore(APP_FIREBASE);
-        const prodRef = collection(db, "Sneaker");
-        const listaSneaker = await getDocs(prodRef).then((item) => {
-          const lista = item.docs.map((doc) => doc.data());
-          return lista;
-        });
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const listaSneaker = await useFireBaseHook();
 
-        //Mock do objeto do FireBase
-        //const resp = await getItems();
         const productId = listaSneaker.find(
           (produto) => produto.id === idNumber
         );
