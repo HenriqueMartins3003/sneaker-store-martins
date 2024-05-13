@@ -32,7 +32,12 @@ const NavBar = () => {
           <ul className="flex gap-4 justify-around">
             <li>
               <a className="cursor-pointer" onClick={() => routes.push("/")}>
-                Home
+                Login
+              </a>
+            </li>
+            <li>
+              <a href="" onClick={() => routes.push("/Item")}>
+                Produtos
               </a>
             </li>
           </ul>
