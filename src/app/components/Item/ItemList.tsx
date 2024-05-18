@@ -1,44 +1,21 @@
 import React, { useEffect, useState } from "react";
 import GetItemsInterface from "@/app/interfaces/Items.Interface";
-import { APP_FIREBASE } from "@/Config/firebase/firebase.config";
-import {
-  collection,
-  getDocs,
-  getDoc,
-  getFirestore,
-  doc,
-} from "firebase/firestore";
 import Item from "./Item";
-import useFireBaseHook from "@/Hooks/fireBaseHook";
+import { getAllProducts, getProductsById } from "@/Hooks/backend.api";
 
 const ItemList = () => {
   const [items, SetItems] = useState<GetItemsInterface[]>([]);
-
-  // const db = getFirestore(APP_FIREBASE);
-
-  //Pegar apenas um objeto do Firebase
-  // const productRef = doc(db, "Sneaker", "BevNCG3cMrbMFxuXSPEH");
-  // getDoc(productRef).then((item) => {
-  //   if (item.exists()) {
-  //     console.log(item.data());
-  //   }
-  // });
-
-  //  const prodRef = collection(db, "Sneaker");
-
-  // const listaSneaker = getDocs(prodRef).then((item) => {
-  //   const lista = item.docs.map((doc) => doc.data());
-  //   return lista;
-  // });
 
   useEffect(() => {
     const onMount = async () => {
       try {
         //Custom hook para usar o Firebase!
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const listaSneaker = await useFireBaseHook();
+        // const listaSneaker = await useFireBaseHook();
+        //SetItems(listaSneaker);
 
-        SetItems(listaSneaker);
+        const list = await getProductsById("65fc40c0db81e753d86faff1");
+        console.log(list);
       } catch (err) {
         console.log("Erro:", err);
       }

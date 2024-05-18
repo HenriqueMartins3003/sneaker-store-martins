@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "axios": "^1.6.8",
     "firebase": "^10.7.1",
     "next": "^14.0.4",
     "nookies": "^2.5.2",

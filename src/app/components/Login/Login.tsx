@@ -1,19 +1,15 @@
 "use client";
-import React, { useContext } from "react";
-import Router from "next/router";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "@/app/contexts/AuthContext";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
-
   const { singIn, isAuthenticated } = useContext(AuthContext);
 
   const handleSingIn = async (data: any) => {
     try {
       await singIn(data);
-      //redirecionando
-      isAuthenticated ? Router.push("/Item") : Router.reload();
     } catch (error) {
       console.log(error);
     }
@@ -35,11 +31,11 @@ const Login = () => {
                 Endereço de Email
               </label>
               <input
-                {...register("mail")}
+                {...register("email")}
                 id="email-address"
-                name="mail"
-                type="mail"
-                autoComplete="mail"
+                name="email"
+                type="email"
+                autoComplete="email"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Endereço de Email"
