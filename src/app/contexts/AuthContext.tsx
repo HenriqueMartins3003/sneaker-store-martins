@@ -2,6 +2,7 @@
 import { createContext, useState } from "react";
 import { setCookie } from "nookies";
 import { useRouter } from "next/navigation";
+import { login } from "@/Hooks/backend.api";
 type User = {
   name: string;
   email: string;
@@ -28,17 +29,7 @@ export function AuthProvider({ children }: any) {
   async function singIn({ email, password }: SingInData) {
     console.log(`Entrei no Auth!!!!  MAIL: ${email}, SENHA: ${password} `);
     try {
-      const response = await fetch("http://localhost:8080/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      //console.log(await response.json());
-
-      const resp = await response.json();
+      const resp = await login({email,password});
 
       const { token } = resp;
 

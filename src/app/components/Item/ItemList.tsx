@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import GetItemsInterface from "@/app/interfaces/Items.Interface";
 import Item from "./Item";
-import { getAllProducts, getProductsById } from "@/Hooks/backend.api";
+import { getAllProducts } from "@/Hooks/backend.api";
 
 const ItemList = () => {
   const [items, SetItems] = useState<GetItemsInterface[]>([]);
@@ -14,8 +14,10 @@ const ItemList = () => {
         // const listaSneaker = await useFireBaseHook();
         //SetItems(listaSneaker);
 
-        const list = await getProductsById("65fc40c0db81e753d86faff1");
-        console.log(list);
+        const list = await getAllProducts();
+        console.log(list,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        SetItems(list);
+        
       } catch (err) {
         console.log("Erro:", err);
       }
@@ -27,14 +29,15 @@ const ItemList = () => {
   return (
     <>
       <div className="grid grid-cols-2 mx-20 my-3 rounded-md border-2 border-sky-500 items-center justify-center">
-        {items.map((item) => (
-          <div className="my-2" key={item.id}>
+        {items.map((item,index) => (
+          <div className="my-2" key={index}>
             <Item
-              id={item.id}
+              _id={item._id}
+              code={item.code}
               price={item.price}
               title={item.title}
               description={item.description}
-              toplLeftImage={item.topRightImage}
+              thumbmail={item.thumbmail}
             />
           </div>
         ))}
