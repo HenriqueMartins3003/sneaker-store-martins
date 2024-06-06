@@ -3,10 +3,8 @@ import React, { useEffect, useState } from "react";
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
 import GetItemsInterface from "@/app/interfaces/Items.Interface";
 import { useParams } from "next/navigation";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
-import { APP_FIREBASE } from "@/Config/firebase/firebase.config";
 import { ToastContainer } from "react-toastify";
-import useFireBaseHook from "@/Hooks/fireBaseHook";
+import {getProductsById} from "@/Hooks/backend.api"
 
 interface Props {
   params: {
@@ -15,7 +13,7 @@ interface Props {
 }
 const ItemDetailContainer = ({ params }: Props) => {
   const routeParams = useParams();
-  const idNumber = Number(routeParams.id);
+  const idNumber = routeParams.id.toString();
 
   const [items, SetItems] = useState<GetItemsInterface | null>(null);
 
@@ -23,13 +21,11 @@ const ItemDetailContainer = ({ params }: Props) => {
     const onMount = async () => {
       try {
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const listaSneaker = await useFireBaseHook();
+        const product = await getProductsById(idNumber);
 
-        const productId = listaSneaker.find(
-          (produto) => produto.id === idNumber
-        );
+        
 
-        productId ? SetItems(productId) : SetItems(null);
+       product ? SetItems(product) : SetItems(null);
         localStorage.setItem("StockDisponivel", items!.stock!.toString());
       } catch (err) {
         console.log("Erro:", err);
@@ -44,18 +40,13 @@ const ItemDetailContainer = ({ params }: Props) => {
       <section>
         <ToastContainer />
         <ItemDetail
-          id={items?.id}
-          avaliability={items?.avaliability}
-          bottonLeftImage={items?.bottonLeftImage}
-          bottonRightImage={items?.bottonRightImage}
-          color={items?.color}
+          _id={items?._id}           
           description={items?.description}
           price={items?.price}
           title={items?.title}
-          topRightImage={items?.topRightImage}
-          toplLeftImage={items?.toplLeftImage}
           stock={items?.stock}
           quantity={items?.quantity}
+          thumbmail={items?.thumbmail!}
         />
       </section>
     </>

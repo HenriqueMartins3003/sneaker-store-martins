@@ -9,26 +9,21 @@ import { useCart } from "@/contexto/cartContext";
 import GetItemsInterface from "@/app/interfaces/Items.Interface";
 
 const ItemDetail = ({
-  id,
-  avaliability,
-  bottonLeftImage,
-  bottonRightImage,
-  color,
+  _id,
   description,
+  thumbmail,
   price,
   title,
-  topRightImage,
-  toplLeftImage,
   stock,
   quantity,
 }: GetItemsInterface) => {
+
   const [stockState, setStockState] = useState<number>(0);
   const [counter, setCounter] = useState<number>(0);
   const [isEnable, setIsEnable] = useState<boolean>(false);
-  const date = avaliability?.toDate();
-  const formatedDate = date?.toLocaleDateString("pt-BR");
   const routes = useRouter();
   const { addItem } = useCart();
+
 
   useEffect(() => {
     setCounter(quantity!);
@@ -83,18 +78,13 @@ const ItemDetail = ({
       return;
     }
     const iCart = {
-      id,
-      avaliability,
-      bottonLeftImage,
-      bottonRightImage,
-      color,
+      _id,
       description,
       price,
       title,
-      topRightImage,
-      toplLeftImage,
       stock,
       quantity: counter,
+      thumbmail
     };
 
     addItem(iCart);
@@ -117,7 +107,7 @@ const ItemDetail = ({
         <div className="ml-5 mt-2 w-[5500px] grid grid-cols-2">
           <div className="bg-slate-300 opacity-60 mr-2 items-center justify-center">
             <Image
-              src={topRightImage!}
+              src={thumbmail!}
               alt={title!}
               height={350}
               width={350}
@@ -126,7 +116,7 @@ const ItemDetail = ({
           </div>
           <div className="bg-slate-300 opacity-60">
             <Image
-              src={toplLeftImage!}
+              src={thumbmail!}
               alt={title!}
               height={350}
               width={350}
@@ -135,7 +125,7 @@ const ItemDetail = ({
           </div>
           <div className="mt-2 mr-2 bg-slate-300 opacity-60">
             <Image
-              src={bottonLeftImage!}
+              src={thumbmail!}
               alt={title!}
               height={350}
               width={350}
@@ -144,7 +134,7 @@ const ItemDetail = ({
           </div>
           <div className="mt-2 bg-slate-300 opacity-60">
             <Image
-              src={bottonRightImage!}
+              src={thumbmail!}
               alt={title!}
               height={350}
               width={350}
@@ -155,12 +145,12 @@ const ItemDetail = ({
         <div className="flex flex-col ml-3 mt-3 space-y-2 justify-around">
           <div className="">
             <h3 className="text-4xl">{title}</h3>
-            <h2 className="text-2xl mt-2">{color} </h2>
+            
           </div>
           <span className="text-base">{description}</span>
           <div className="flex flex-col mt-3 gap-3">
-            <span className="text-base">{`SKU: ${id}`}</span>
-            <span className="text-base">{`Disponivel a partir de: ${formatedDate}`}</span>
+            <span className="text-base">{`SKU: ${_id}`}</span>
+            
             <span className="text-base">{`$ ${price}`}</span>
             <span className="text-base">
               {stockState! > 0

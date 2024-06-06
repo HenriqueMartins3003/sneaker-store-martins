@@ -1,17 +1,12 @@
-import { Timestamp } from "firebase/firestore";
 import { StaticImageData } from "next/image";
 
 export default interface GetItemsInterface {
-  id?: number;
-  topRightImage?: StaticImageData;
-  toplLeftImage?: StaticImageData;
-  bottonRightImage?: StaticImageData;
-  bottonLeftImage?: StaticImageData;
-  description?: string;
+  _id?: string;
   title?: string;
-  color?: string;
+  description?: string;
   price?: number;
-  avaliability?: Timestamp;
   stock?: number;
+  code?: string;
+  thumbmail: StaticImageData;
   quantity?: number;
 }
