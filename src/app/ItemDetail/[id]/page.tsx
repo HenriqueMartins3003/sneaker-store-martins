@@ -43,7 +43,7 @@ const ItemDetailContainer = ({ params }: Props) => {
           price={items?.price}
           title={items?.title}
           stock={items?.stock}
-          quantity={items?.quantity}
+          quantity={0}
           thumbmail={items?.thumbmail!}
         />
       </section>

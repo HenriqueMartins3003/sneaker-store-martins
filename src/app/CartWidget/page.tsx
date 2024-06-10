@@ -27,11 +27,11 @@ const CartWidget = () => {
           itemsCart.map((item) => (
             <div
               className="flex justify-between items-center  mb-4 p-4 bg-gray-200 rounded-md border border-gray-700"
-              key={item.id}
+              key={item._id}
             >
               <div className="w-24">
                 <Image
-                  src={item.bottonRightImage!}
+                  src={item.thumbmail!}
                   alt={item.title!}
                   width={300}
                   height={300}
@@ -47,7 +47,7 @@ const CartWidget = () => {
               <p className="text-black">Quantidade: {item.quantity}</p>
               <p>Preço total: {item.quantity! * item.price!}</p>
 
-              <button className="" onClick={() => removeItem(item.id!)}>
+              <button className="" onClick={() => removeItem(item._id!)}>
                 <TrashIcon className="h-9 my-auto" />
               </button>
             </div>

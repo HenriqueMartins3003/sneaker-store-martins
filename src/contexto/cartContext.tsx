@@ -16,9 +16,9 @@ const cartContextDefault: GetItemsInterface[] = [];
 const CartContext = createContext<{
   itemsCart: GetItemsInterface[];
   addItem: (item: GetItemsInterface) => void;
-  removeItem: (itemId: number) => void;
+  removeItem: (itemId: string) => void;
   clear: () => void;
-  isInCart: (id: number) => boolean;
+  isInCart: (id: string) => boolean;
 }>({
   itemsCart: cartContextDefault,
   addItem: () => {},
@@ -45,11 +45,11 @@ const CartProvider = ({ children }: IProvider) => {
       return [...prevItems, { ...item }];
     });
   };
-  const removeItem = (itemId: number) => {
+  const removeItem = (itemId: string) => {
     setItemsCart((prevItems) => {
       setTotalItems((prev) => prev - 1);
 
-      return prevItems.filter((item) => item.id !== itemId);
+      return prevItems.filter((item) => item._id !== item._id);
     });
   };
 
@@ -58,9 +58,9 @@ const CartProvider = ({ children }: IProvider) => {
     setTotalItems(0);
   };
 
-  const isInCart = (itemId: number) => {
+  const isInCart = (itemId: string) => {
     // Implemente a lógica para verificar se o item está no carrinho
-    return itemsCart.some((item) => item.id === itemId);
+    return itemsCart.some((item) => item._id === itemId);
   };
 
   return (
