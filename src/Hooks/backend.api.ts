@@ -1,14 +1,45 @@
+import { NewProduct } from "@/app/interfaces/NewProduct.interface";
+import { LoginUser } from "@/app/interfaces/LoginUser.interface";
+import {parseCookies} from "nookies"
 import axios from "axios";
-interface LoginUser {
-  email:string, 
-  password: string
-}
 
-const getAllProducts = async () => {
+const url = 'http://localhost:8080'
+
+  const getCookie = () => {
+    const nookie = parseCookies();
+    
+    const cookie = nookie['HAL-Token']
+    console.log('HAL-TOKEN', cookie)
+    return cookie;
+  }
+
+  const login = async ({email, password}:LoginUser) => {
+    try {
+      const response = await axios.post("http://localhost:8080/login",{
+        email,password    
+      })
+  
+  
+      return response.data;
+  
+  
+    } catch (error) {
+      console.error("Erro ao fazer login!!", error)
+      throw new Error('erro ao fazer login!')
+    }
+  }
+
+  const getAllProducts = async () => {
+  
+  const cookie = getCookie();
   try {
-    const response = await axios.get("http://localhost:8080/products");
+    const response = await axios.get("http://localhost:8080/products",{
+      headers:{
+        'authorization': cookie
+      }
+    });
 
-    console.log(response.data);
+   
     const {productObjDocs,userName,role} = response.data
 
     return productObjDocs;
@@ -19,11 +50,16 @@ const getAllProducts = async () => {
 };
 
 const getProductsById = async (pid: string) => {
+  const cookie = getCookie();
   try {
     console.log("PID: ", pid);
-    const response = await axios.get(`http://localhost:8080/products/${pid}`);
+    const response = await axios.get(`${url}/products/${pid}`,{
+      headers: {
+        'authorization': cookie
+      }
+    });
 
-    console.log("RESPOSTA: ", response.data);
+   
     return response.data;
   } catch (error) {
     console.error("Error: ", error);
@@ -31,20 +67,23 @@ const getProductsById = async (pid: string) => {
   }
 };
 
-const login = async ({email, password}:LoginUser) => {
-  try {
-    const response = await axios.post("http://localhost:8080/login",{
-      email,password    
-    })
-
-    console.log(response.data);
-    return response.data;
+const createProduct = async ({title,description,price,code,stock,thumbmail}: NewProduct) => {
+  const cookie = getCookie()
 
 
-  } catch (error) {
-    console.error("Erro ao fazer login!!", error)
-    throw new Error('erro ao fazer login!')
-  }
+try {
+  const NewProduct = await axios.post(`${url}/products`,{title,description,price,code,stock,thumbmail},{headers: {
+    'authorization': cookie
+  }})
+
+  return NewProduct.data
+} catch (error) {
+  console.error(error)
+  return null 
 }
 
-export { getAllProducts, getProductsById,login };
+
+
+}
+
+export { getAllProducts, getProductsById,login, createProduct };
