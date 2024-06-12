@@ -4,6 +4,7 @@ import { setCookie } from "nookies";
 import { useRouter } from "next/navigation";
 import { login } from "@/Hooks/backend.api";
 type User = {
+  id: string;
   name: string;
   email: string;
   role: string;
@@ -33,7 +34,7 @@ export function AuthProvider({ children }: any) {
 
       const { token } = resp;
 
-      const user = { name: resp.name, email: resp.email, role: resp.role };
+      const user = { id: resp._id ,name: resp.name, email: resp.email, role: resp.role };
 
       if (token) {
         setCookie(null, "HAL-Token", token, {

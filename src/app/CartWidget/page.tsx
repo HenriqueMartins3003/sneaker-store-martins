@@ -1,15 +1,19 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import { useEffect, useState,useContext } from "react";
+import {createTicket} from "@/Hooks/backend.api"
 import { useCart } from "@/contexto/cartContext";
 import { TrashIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import {AuthContext } from "../contexts/AuthContext";
+
 
 const CartWidget = () => {
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const { itemsCart, removeItem, clear } = useCart();
+  const { user } = useContext(AuthContext)
   const routes = useRouter();
-
+  
   useEffect(() => {
     let calculatedPrice = 0;
     itemsCart.forEach((item) => {
@@ -74,7 +78,7 @@ const CartWidget = () => {
             className="border-2 bg-sky-700 text-sm text-white rounded-full px-2 py-2"
             onClick={() => {
               // logica para alterar o firesabe
-
+                //createTicket({  })
               //limpando o carrinho!
               clear();
               //Indo para a pagina de finalização(integraçao com pagina de pagamentos);

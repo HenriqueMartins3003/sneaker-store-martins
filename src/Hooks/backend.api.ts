@@ -2,6 +2,7 @@ import { NewProduct } from "@/app/interfaces/NewProduct.interface";
 import { LoginUser } from "@/app/interfaces/LoginUser.interface";
 import {parseCookies} from "nookies"
 import axios from "axios";
+import { NewTicket } from "@/app/interfaces/NewTicket.interface";
 
 const url = 'http://localhost:8080'
 
@@ -72,7 +73,8 @@ const createProduct = async ({title,description,price,code,stock,thumbmail}: New
 
 
 try {
-  const NewProduct = await axios.post(`${url}/products`,{title,description,price,code,stock,thumbmail},{headers: {
+  const NewProduct = await axios.post(`${url}/products`,{title,description,price,code,stock,thumbmail},{
+    headers: {
     'authorization': cookie
   }})
 
@@ -81,9 +83,26 @@ try {
   console.error(error)
   return null 
 }
+}
 
+const createTicket = async ({id_user,products,valorTotal}: NewTicket) => {
+const cookie = getCookie();
+  try {
+    const newTicket = await axios.post(`${url}/ticket`,{id_user,products,valorTotal},{
+      headers: {
+        'authorization': cookie
+    }})
+     if(newTicket.status == 201) {
+      return newTicket.data
+     }else{
+      throw new Error("erro ao adicionar o ticket no banco")
+     }    
 
+  }catch(e){
+    console.log(e)
+    return new Error("Falha no ticket")
+  }
 
 }
 
-export { getAllProducts, getProductsById,login, createProduct };
+export { getAllProducts, getProductsById,login, createProduct, createTicket };

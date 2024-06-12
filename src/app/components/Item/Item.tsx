@@ -9,7 +9,7 @@ const Item = ({ thumbmail, _id, price, title }: GetItemsInterface) => {
   return (
     <div>
       <div className="flex flex-col justify-center items-center ">
-        <div className="flex mb-2 mx-auto my-auto w-[300px] h-[300px]">
+        <div className="flex mb-2 mx-auto my-auto w-[300px] h-[300px] cursor-pointer" onClick={() => routes.push(`/ItemDetail/${_id}`)}>
           <Image
             src={thumbmail!}
             alt={title!}

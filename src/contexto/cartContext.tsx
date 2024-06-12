@@ -1,6 +1,5 @@
 "use client";
 import { createContext, useContext, useState } from "react";
-import { useRouter } from "next/router";
 import GetItemsInterface from "@/app/interfaces/Items.Interface";
 
 interface Icart extends GetItemsInterface {

@@ -1,15 +1,31 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 
 import LocalImage from "@/../public/LogoSneaker.png";
 import { useCart } from "@/contexto/cartContext";
+import { parseCookies,destroyCookie } from "nookies";
 
 const NavBar = () => {
-  const routes = useRouter();
+  
+  const [login, setLogin] = useState<string>("");
+    const routes = useRouter();
   const { itemsCart } = useCart();
+  
+  const getToken = ()=> {
+    const nookie = parseCookies();
+    
+    const cookie = nookie['HAL-Token']
+    console.log('HAL-TOKEN', cookie)
+    return cookie;
+  }
+
+  useEffect(() => {
+    const token = getToken();
+    !token ? setLogin("Login") : setLogin("Logout")
+  },[getToken()])
 
   return (
     <div className=" w-screen mx-auto">
@@ -31,12 +47,16 @@ const NavBar = () => {
         <div className="text-white my-auto mx-auto">
           <ul className="flex gap-4 justify-around">
             <li>
-              <a className="cursor-pointer" onClick={() => routes.push("/")}>
-                Login
+              <a className="cursor-pointer" 
+              onClick={() => {
+                destroyCookie(null,"HAL-Token")
+                routes.push("/")}}>
+                {login}
               </a>
             </li>
             <li>
-              <a href="" onClick={() => routes.push("/Item")}>
+              <a className="cursor-pointer" 
+              onClick={() => routes.push("/Item")}>
                 Produtos
               </a>
             </li>

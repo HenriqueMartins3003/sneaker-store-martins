@@ -1,10 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import ItemDetail from "../../components/ItemDetail/ItemDetail";
-import GetItemsInterface from "@/app/interfaces/Items.Interface";
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { ToastContainer } from "react-toastify";
 import {getProductsById} from "@/Hooks/backend.api"
+import ItemDetail from "../../components/ItemDetail/ItemDetail";
+import GetItemsInterface from "@/app/interfaces/Items.Interface";
 
 interface Props {
   params: {

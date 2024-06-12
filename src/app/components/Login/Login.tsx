@@ -1,11 +1,11 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import  { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "@/app/contexts/AuthContext";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
-  const { singIn, isAuthenticated } = useContext(AuthContext);
+  const { singIn } = useContext(AuthContext);
 
   const handleSingIn = async (data: any) => {
     try {
