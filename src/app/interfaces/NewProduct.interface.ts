@@ -7,3 +7,4 @@ export interface NewProduct {
     thumbmail: string;
     
 }
+

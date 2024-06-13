@@ -7,6 +7,6 @@ export default interface GetItemsInterface {
   price?: number;
   stock?: number;
   code?: string;
-  thumbmail: StaticImageData;
+  thumbmail?: StaticImageData;
   quantity?: number;
 }

@@ -34,8 +34,8 @@ export function AuthProvider({ children }: any) {
 
       const { token } = resp;
 
-      const user = { id: resp._id ,name: resp.name, email: resp.email, role: resp.role };
-
+      const user = { id: resp.id ,name: resp.name, email: resp.email, role: resp.role };
+      console.log(user)
       if (token) {
         setCookie(null, "HAL-Token", token, {
           maxAge: 60 * 60 * 1, //1hora

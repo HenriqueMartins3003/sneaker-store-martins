@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Image from "next/image";
 import GetItemsInterface from "@/app/interfaces/Items.Interface";
 import { useRouter } from "next/navigation";

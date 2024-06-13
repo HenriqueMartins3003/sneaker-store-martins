@@ -7,6 +7,7 @@ import { MinusSmallIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/contexto/cartContext";
 import GetItemsInterface from "@/app/interfaces/Items.Interface";
+import { createCart } from "@/Hooks/backend.api";
 
 const ItemDetail = ({
   _id,
@@ -86,8 +87,19 @@ const ItemDetail = ({
       quantity: counter,
       thumbmail
     };
-
     addItem(iCart);
+    const cart = createCart(iCart)
+      
+    if(cart === null){
+        toast.error('Erro ao Salvar',{
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 500,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,  
+          theme: "light",
+        })
+    }
 
     toast.success(`${title} adicionado ao carrinho com sucesso`, {
       position: toast.POSITION.TOP_RIGHT,

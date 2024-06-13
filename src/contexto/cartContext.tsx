@@ -43,7 +43,9 @@ const CartProvider = ({ children }: IProvider) => {
       setTotalItems((prev) => prev + 1);
       return [...prevItems, { ...item }];
     });
+    
   };
+
   const removeItem = (itemId: string) => {
     setItemsCart((prevItems) => {
       setTotalItems((prev) => prev - 1);

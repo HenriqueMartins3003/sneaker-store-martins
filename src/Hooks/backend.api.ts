@@ -1,8 +1,10 @@
 import { NewProduct } from "@/app/interfaces/NewProduct.interface";
 import { LoginUser } from "@/app/interfaces/LoginUser.interface";
-import {parseCookies} from "nookies"
-import axios from "axios";
+import { parseCookies } from "nookies"
 import { NewTicket } from "@/app/interfaces/NewTicket.interface";
+import { NewCart } from "@/app/interfaces/CartInterface";
+import axios from "axios";
+import GetItemsInterface from "@/app/interfaces/Items.Interface";
 
 const url = 'http://localhost:8080'
 
@@ -78,12 +80,31 @@ try {
     'authorization': cookie
   }})
 
-  return NewProduct.data
-} catch (error) {
-  console.error(error)
-  return null 
+    return NewProduct.data
+  } catch (error) {
+    console.error(error)
+    return null 
+  }
 }
+
+const createCart = async (product :GetItemsInterface) => {
+  
+  const cookie = getCookie();
+  try {
+    const newCart = await axios.post(`${url}/cart`,{product},{
+      headers: {
+        'authorization': cookie
+      }
+    })
+    
+    return newCart
+  } catch (error) {
+      console.log(error)
+      return null     
+  }
 }
+
+const getCart = async () => {}
 
 const createTicket = async ({id_user,products,valorTotal}: NewTicket) => {
 const cookie = getCookie();
@@ -105,4 +126,4 @@ const cookie = getCookie();
 
 }
 
-export { getAllProducts, getProductsById,login, createProduct, createTicket };
+export { getAllProducts, getProductsById,login, createProduct,createCart,getCart ,createTicket };

@@ -3,3 +3,8 @@ export interface NewTicket {
     products: [],
     valorTotal: number
 }
+
+export interface GetTicket {
+
+}
+
