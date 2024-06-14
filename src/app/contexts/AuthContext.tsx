@@ -35,11 +35,14 @@ export function AuthProvider({ children }: any) {
       const { token } = resp;
 
       const user = { id: resp.id ,name: resp.name, email: resp.email, role: resp.role };
-      console.log(user)
+      
       if (token) {
         setCookie(null, "HAL-Token", token, {
           maxAge: 60 * 60 * 1, //1hora
         });
+
+        localStorage.setItem("ID_USER",user.id);
+        
         setUser(user);
         console.log("fiz o setUser teoricamente vou para o /Item");
         router.push("/Item");

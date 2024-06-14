@@ -24,8 +24,7 @@ const ItemDetail = ({
   const [isEnable, setIsEnable] = useState<boolean>(false);
   const routes = useRouter();
   const { addItem } = useCart();
-  const { user } = useContext(AuthContext);
-  const id = user?.id;
+  let id = localStorage.getItem("ID_USER")
 
   useEffect(() => {
     setCounter(quantity!);
@@ -89,6 +88,11 @@ const ItemDetail = ({
       thumbmail,
     };
     addItem(iCart);
+    console.log(id)
+    
+    if(id === null){
+      id = "";
+    }
     const cart = createCart(iCart, id);
 
     if (cart === null) {
