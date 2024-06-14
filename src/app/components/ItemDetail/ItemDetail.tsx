@@ -1,12 +1,13 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import GetItemsInterface from "@/app/interfaces/Items.Interface";
+import React, { useContext, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { PlusSmallIcon } from "@heroicons/react/20/solid";
 import { MinusSmallIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/contexto/cartContext";
-import GetItemsInterface from "@/app/interfaces/Items.Interface";
+import { AuthContext } from "@/app/contexts/AuthContext";
 import { createCart } from "@/Hooks/backend.api";
 
 const ItemDetail = ({
@@ -18,13 +19,13 @@ const ItemDetail = ({
   stock,
   quantity,
 }: GetItemsInterface) => {
-
   const [stockState, setStockState] = useState<number>(0);
   const [counter, setCounter] = useState<number>(0);
   const [isEnable, setIsEnable] = useState<boolean>(false);
   const routes = useRouter();
   const { addItem } = useCart();
-
+  const { user } = useContext(AuthContext);
+  const id = user?.id;
 
   useEffect(() => {
     setCounter(quantity!);
@@ -85,20 +86,20 @@ const ItemDetail = ({
       title,
       stock,
       quantity: counter,
-      thumbmail
+      thumbmail,
     };
     addItem(iCart);
-    const cart = createCart(iCart)
-      
-    if(cart === null){
-        toast.error('Erro ao Salvar',{
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 500,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: false,  
-          theme: "light",
-        })
+    const cart = createCart(iCart, id);
+
+    if (cart === null) {
+      toast.error("Erro ao Salvar", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 500,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        theme: "light",
+      });
     }
 
     toast.success(`${title} adicionado ao carrinho com sucesso`, {
@@ -157,12 +158,11 @@ const ItemDetail = ({
         <div className="flex flex-col ml-3 mt-3 space-y-2 justify-around">
           <div className="">
             <h3 className="text-4xl">{title}</h3>
-            
           </div>
           <span className="text-base">{description}</span>
           <div className="flex flex-col mt-3 gap-3">
             <span className="text-base">{`SKU: ${_id}`}</span>
-            
+
             <span className="text-base">{`$ ${price}`}</span>
             <span className="text-base">
               {stockState! > 0
