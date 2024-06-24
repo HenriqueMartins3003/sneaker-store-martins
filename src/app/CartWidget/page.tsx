@@ -77,12 +77,15 @@ const CartWidget = () => {
           <button
             className="border-2 bg-sky-700 text-sm text-white rounded-full px-2 py-2"
             onClick={() => {
-              // logica para alterar o firesabe
-                //createTicket({  })
+               let purchaser = localStorage.getItem('User_Email')
+               if(!purchaser){
+                purchaser = ""
+               }
+                createTicket({purchaser, products: itemsCart,valorTotal: totalPrice  })
               //limpando o carrinho!
               clear();
               //Indo para a pagina de finalização(integraçao com pagina de pagamentos);
-              routes.push("/cartFinished");
+              routes.push("/Tickets");
             }}
           >
             Finalizar Compra!

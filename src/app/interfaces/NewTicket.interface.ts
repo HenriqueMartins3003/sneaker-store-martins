@@ -1,10 +1,12 @@
+import GetItemsInterface from "./Items.Interface"
+
 export interface NewTicket {
-    id_user: string,
-    products: [],
+    purchaser: string,
+    products: GetItemsInterface[],
     valorTotal: number
 }
 
 export interface GetTicket {
-
+    purchaser: string 
 }
 

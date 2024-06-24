@@ -42,6 +42,7 @@ export function AuthProvider({ children }: any) {
         });
 
         localStorage.setItem("ID_USER",user.id);
+        localStorage.setItem("User_Email", user.email)
         
         setUser(user);
         console.log("fiz o setUser teoricamente vou para o /Item");

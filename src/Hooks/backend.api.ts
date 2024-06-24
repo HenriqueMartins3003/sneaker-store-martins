@@ -115,12 +115,12 @@ const createCart = async (product: GetItemsInterface, id?: string) => {
 
 const getCart = async () => {};
 
-const createTicket = async ({ id_user, products, valorTotal }: NewTicket) => {
+const createTicket = async ({ purchaser, products, valorTotal }: NewTicket) => {
   const cookie = getCookie();
   try {
     const newTicket = await axios.post(
       `${url}/ticket`,
-      { id_user, products, valorTotal },
+      { purchaser, products, valorTotal },
       {
         headers: {
           authorization: cookie,
