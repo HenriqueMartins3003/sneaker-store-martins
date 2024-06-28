@@ -3,6 +3,7 @@ import React from 'react'
 import { useForm } from "react-hook-form";
 import {useRouter} from "next/navigation"
 import { createProduct } from '@/Hooks/backend.api';
+import withAuth from '../../../hoc';
 
 
 const CreateNewProduct = () => {
@@ -136,4 +137,4 @@ const CreateNewProduct = () => {
     </div>
   
   )}
-export default CreateNewProduct
+  export default withAuth(CreateNewProduct);
