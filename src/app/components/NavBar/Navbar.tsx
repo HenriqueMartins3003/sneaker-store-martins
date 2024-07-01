@@ -62,10 +62,17 @@ const NavBar = () => {
             </li>
             <li>
               <a className="cursor-pointer" 
+              onClick={() => routes.push("/Chat")}>
+                Chat
+                   </a>
+            </li>
+            <li>
+              <a className="cursor-pointer" 
               onClick={() => routes.push("/ProductForm")}>
                 Cadastro de produtos
-              </a>
+                  </a>
             </li>
+           
           </ul>
         </div>
         <div className="h-9 my-auto mr-10">
