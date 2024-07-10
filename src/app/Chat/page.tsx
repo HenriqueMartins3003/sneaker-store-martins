@@ -24,7 +24,7 @@ const Chat = () => {
     return (
         <div className='flex flex-col justify-center items-center'>
         <div className='my-20'>
-            <ul>
+            <ul className='max-w-sm'>
                 {message.map((msg,index)=> (
                     <li key={index}>{msg}</li>
                 ))}

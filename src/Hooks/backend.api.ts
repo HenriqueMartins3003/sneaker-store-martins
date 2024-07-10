@@ -18,7 +18,7 @@ const getCookie = () => {
 
 const login = async ({ email, password }: LoginUser) => {
   try {
-    const response = await axios.post("http://localhost:8080/login", {
+    const response = await axios.post(`${url}/login`, {
       email,
       password,
     });
@@ -33,7 +33,7 @@ const login = async ({ email, password }: LoginUser) => {
 const getAllProducts = async () => {
   const cookie = getCookie();
   try {
-    const response = await axios.get("http://localhost:8080/products", {
+    const response = await axios.get(`${url}/api/products`, {
       headers: {
         authorization: cookie,
       },
@@ -52,7 +52,7 @@ const getProductsById = async (pid: string) => {
   const cookie = getCookie();
   try {
     console.log("PID: ", pid);
-    const response = await axios.get(`${url}/products/${pid}`, {
+    const response = await axios.get(`${url}/api/products/${pid}`, {
       headers: {
         authorization: cookie,
       },
@@ -77,7 +77,7 @@ const createProduct = async ({
 
   try {
     const NewProduct = await axios.post(
-      `${url}/products`,
+      `${url}/api/products`,
       { title, description, price, code, stock, thumbmail },
       {
         headers: {
